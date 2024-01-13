@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091a02d2475492fbc0d9fbbaf3fb4e5, type: 3}
   m_Name: CanvasSetupConfig
   m_EditorClassIdentifier: 
-  _targetResolution: {x: 0, y: 0}
+  _scaleMode: 1
+  _referenceResolution: {x: 1920, y: 1080}
+  _matchMode: 0
+  _matchWidthHeight: 0.5
+  _referencePixelsPerUnit: 100
