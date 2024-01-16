@@ -11,24 +11,25 @@ namespace GameCore
 
 		private Dictionary<IService, Type> _services;
 
-		public async Task<ServiceLocator> InitServices()
+		public async Task InitServices()
 		{
 			await Register(new ConfigService())
-				.Init();
-
-			await Register(new AssetService(GetService<ConfigService>()))
 				.Init();
 
 			await Register(new InputService())
 				.Init();
 
-			return this;
+			await Register(new AssetService(GetService<ConfigService>().AssetServiceConfig))
+				.Init();
+
+			await Register(new FactoryService(GetService<AssetService>()))
+				.Init();
 		}
 
 		private TService Register<TService>(TService serviceInstance) where TService : IService =>
 			ServiceInstance<TService>.Instance = serviceInstance;
 
-		private TService GetService<TService>() where TService : IService =>
+		public TService GetService<TService>() where TService : IService =>
 			ServiceInstance<TService>.Instance;
 
 		private static class ServiceInstance<TService> where TService : IService

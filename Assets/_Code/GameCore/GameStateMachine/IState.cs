@@ -1,11 +1,17 @@
 ﻿namespace GameCore
 {
-	public interface IState : IExitableState
-	{ void Enter(); }
+	public interface IStatePayloaded<TPayload> : IExitableState
+	{
+		void Enter(TPayload payload);
+	}
 
-	public interface IStatePayloaded : IExitableState
-	{ void Enter<TPayload>(TPayload payload); }
+	public interface IState : IExitableState
+	{
+		void Enter();
+	}
 
 	public interface IExitableState
-	{ void Exit(); }
+	{
+		void Exit();
+	}
 }
