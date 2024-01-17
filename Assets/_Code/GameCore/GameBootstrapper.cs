@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 
 namespace GameCore
@@ -8,7 +9,7 @@ namespace GameCore
 
 		private void Awake()
 		{
-			GameStateMachine.Instance.CreateStates(_loadingScreen);
+			GameStateMachine.Instance.InitStateMachine(_loadingScreen);
 			GameStateMachine.Instance.Enter<StateBootstrap>();
 		}
 	}
