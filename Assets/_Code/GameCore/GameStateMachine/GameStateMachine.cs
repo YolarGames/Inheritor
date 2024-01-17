@@ -1,20 +1,20 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UI;
 
 namespace GameCore
 {
-	public class GameStateMachine
+	public sealed class GameStateMachine
 	{
 		private static GameStateMachine _instance;
 		public static GameStateMachine Instance => _instance ??= new GameStateMachine();
 
 		private ServiceLocator _serviceLocator;
 		private IExitableState _currentState;
-		private Dictionary<Type, IExitableState> _states;
+		private Dictionary<System.Type, IExitableState> _states;
 
-		public void CreateStates(LoadingScreen loadingScreen)
+		public void InitStateMachine(LoadingScreen loadingScreen)
 		{
-			_states = new Dictionary<Type, IExitableState>
+			_states = new Dictionary<System.Type, IExitableState>
 			{
 				[typeof(StateBootstrap)] = new StateBootstrap(),
 				[typeof(StateLoadProgress)] = new StateLoadProgress(),

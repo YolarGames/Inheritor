@@ -1,27 +1,30 @@
 ﻿using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace Characters
 {
-	[SerializeField] private int _maxHealth;
-	private int _currentHealth;
-
-	private void Awake() =>
-		CurrentHealth = _maxHealth;
-
-	public int CurrentHealth
+	public class Health : MonoBehaviour
 	{
-		get => _currentHealth;
-		set
+		[SerializeField] private int _maxHealth;
+		private int _currentHealth;
+
+		private void Awake() =>
+			CurrentHealth = _maxHealth;
+
+		public int CurrentHealth
 		{
-			int health = Mathf.Clamp(value, 0, _maxHealth);
+			get => _currentHealth;
+			set
+			{
+				int health = Mathf.Clamp(value, 0, _maxHealth);
 
-			if (health == 0)
-				Die();
+				if (health == 0)
+					Die();
+			}
 		}
+
+		public virtual void Damage(int damage) { }
+
+		protected virtual void Die() =>
+			Destroy(gameObject);
 	}
-
-	public virtual void Damage(int damage) { }
-
-	protected virtual void Die() =>
-		Destroy(gameObject);
 }

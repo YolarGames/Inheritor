@@ -1,4 +1,6 @@
-﻿namespace GameCore
+﻿using UI;
+
+namespace GameCore
 {
 	public class StateLoadLevel : IStatePayloaded<string>
 	{
