@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a505033fabfc4b32b51bc8776cfbb4d1, type: 3}
+  m_Name: AssetServiceConfig
+  m_EditorClassIdentifier: 
+  _arrowPrefab: {fileID: 1760611798799629214, guid: a0a5569db6b33264ea5e73ff3f8d71d8, type: 3}
+  _camera: {fileID: 6454741141550220498, guid: 2678fb2ebc33d6a4789f64fa7e3637e7, type: 3}
+  _eventSystem: {fileID: 1909755901758045340, guid: 7f60b09263ae7d14597f32f60869e3b5, type: 3}
