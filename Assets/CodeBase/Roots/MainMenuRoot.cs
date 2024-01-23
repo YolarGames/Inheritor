@@ -12,16 +12,11 @@ namespace Roots
 
 		public override void Go()
 		{
-			base.Go();
+			Debug.Log("MainMenu GO");
 			_playButton.onClick.AddListener(PlayGame);
 		}
 
-		private async void PlayGame()
-		{
-			await SceneManagerInstance.Load<GameRoot>();
-			await SceneManagerInstance.UnLoad(this);
-
-		}
-
+		private async void PlayGame() =>
+			await SceneManagerInstance.StartNewScene<GameRoot>();
 	}
 }

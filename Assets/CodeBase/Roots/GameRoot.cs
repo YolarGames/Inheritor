@@ -10,9 +10,7 @@ namespace Roots
 
 		[SerializeField] private Transform _towerPosition;
 
-		public override void Go()
-		{
+		public override void Go() =>
 			_playerTower.Tower.position = _towerPosition.position;
-		}
 	}
 }
