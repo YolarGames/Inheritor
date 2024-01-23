@@ -13,13 +13,13 @@ namespace GameCore.GameStateMachine
 		private IExitableState _currentState;
 		private Dictionary<System.Type, IExitableState> _states;
 
-		public void InitStateMachine(LoadingScreenRoot loadingScreen)
+		public void InitStateMachine()
 		{
 			_states = new Dictionary<System.Type, IExitableState>
 			{
 				[typeof(StateBootstrap)] = new StateBootstrap(),
 				[typeof(StateLoadProgress)] = new StateLoadProgress(),
-				[typeof(StateLoadLevel)] = new StateLoadLevel(loadingScreen),
+				[typeof(StateLoadLevel)] = new StateLoadLevel(),
 			};
 		}
 
