@@ -81,7 +81,7 @@ namespace SceneInjection
 			foreach (FieldInfo field in sceneRoot.SceneDependencies.Dependencies)
 			{
 				Debug.Log($"Resolving dependency {field.FieldType.Name}");
-				await LoadScene(sceneRoot, field);
+				await ResolveScene(sceneRoot, field);
 			}
 
 			Debug.Log($"Dependencies resolved");
@@ -97,7 +97,7 @@ namespace SceneInjection
 			}
 		}
 
-		private async Task LoadScene(ASceneRoot sceneRoot, FieldInfo fieldInfo)
+		private async Task ResolveScene(ASceneRoot sceneRoot, FieldInfo fieldInfo)
 		{
 			if (!IsSceneInLoaded(fieldInfo.GetType(), out ASceneRoot loadedRoot)
 			    && !IsSceneInNew(fieldInfo.GetType(), out loadedRoot))
@@ -125,6 +125,9 @@ namespace SceneInjection
 				_newScenes.TryGetValue(getType, out loadedComponent);
 		}
 
+		private async Task<ASceneRoot> LoadScene<TScene>() where TScene : ASceneRoot =>
+			await LoadScene(typeof(TScene));
+
 		private async Task<ASceneRoot> LoadScene(Type sceneType)
 		{
 			string sceneName = GetSceneAsSceneName(sceneType);
@@ -135,9 +138,6 @@ namespace SceneInjection
 
 			return component as ASceneRoot;
 		}
-
-		private async Task<ASceneRoot> LoadScene<TScene>() where TScene : ASceneRoot =>
-			await LoadScene(typeof(TScene));
 
 		private async Task UnloadScene(ASceneRoot sceneRoot)
 		{
