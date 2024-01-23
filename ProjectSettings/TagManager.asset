@@ -42,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1744918897
+    locked: 0
+  - name: Grass
+    uniqueID: 1438332335
+    locked: 0
+  - name: Enemies
+    uniqueID: 2886281263
+    locked: 0
   - name: Tower
     uniqueID: 1074341785
     locked: 0
