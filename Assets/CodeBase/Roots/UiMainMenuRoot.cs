@@ -8,7 +8,6 @@ namespace Roots
 	public sealed class UiMainMenuRoot : ASceneRoot
 	{
 		[SerializeField] private UIDocument _mainMenuDoc;
-		[SerializeField] private StyleSheet _styleSheet;
 
 		private const string PLAY = "play";
 		private const string SETTINGS = "settings";
@@ -38,7 +37,5 @@ namespace Roots
 #else
 			Application.Quit();
 #endif
-
-		private void OnDisable() { }
 	}
 }
