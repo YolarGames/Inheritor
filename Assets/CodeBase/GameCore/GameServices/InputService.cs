@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using SkillSystemPrototype;
 using UnityEngine;
@@ -8,14 +9,18 @@ namespace GameCore.GameServices
 	public sealed class InputService : IInputService
 	{
 		private PlayerInput _playerInput;
+		private BackPressedHandler _backPressedHandler;
 
 		public async Task Init()
 		{
 			_playerInput = new PlayerInput();
 			_playerInput.Enable();
 
-			SubscribeToActions();
+			var obj = new GameObject("InputServiceBackPressedHandler");
+			obj.AddComponent<DontDestroyOnLoad>();
+			_backPressedHandler = obj.AddComponent<BackPressedHandler>();
 
+			SubscribeToActions();
 			await Task.CompletedTask;
 		}
 
@@ -28,6 +33,8 @@ namespace GameCore.GameServices
 			_playerInput.Main.mousePosition.started += TrackMousePosition;
 			_playerInput.Main.mousePosition.performed += TrackMousePosition;
 			_playerInput.Main.mousePosition.canceled += TrackMousePosition;
+
+			_backPressedHandler.OnBackPressed += InvokeBackPressed;
 		}
 
 		private void UnsubscribeFromActions()
@@ -39,23 +46,39 @@ namespace GameCore.GameServices
 			_playerInput.Main.mousePosition.started -= TrackMousePosition;
 			_playerInput.Main.mousePosition.performed -= TrackMousePosition;
 			_playerInput.Main.mousePosition.canceled -= TrackMousePosition;
+
+			_backPressedHandler.OnBackPressed -= InvokeBackPressed;
 		}
 
+		private void InvokeBackPressed() =>
+			PlayerInputEvents.OnBackPressed?.Invoke();
+
 		private void MovePLayer(InputAction.CallbackContext obj) =>
-			PlayerEvents.OnMove?.Invoke(obj.ReadValue<Vector2>());
+			PlayerInputEvents.OnMove?.Invoke(obj.ReadValue<Vector2>());
 
 		private void TrackMousePosition(InputAction.CallbackContext obj)
 		{
 			var value = obj.ReadValue<Vector2>();
-			
+
 			if (obj.started)
-				PlayerEvents.OnMouseDown0?.Invoke();
+				PlayerInputEvents.OnMouseDown0?.Invoke();
 
 			else if (obj.performed)
-				PlayerEvents.OnMouseHold0?.Invoke(value);
+				PlayerInputEvents.OnMouseHold0?.Invoke(value);
 
 			else if (obj.canceled)
-				PlayerEvents.OnMouseUp0?.Invoke();
+				PlayerInputEvents.OnMouseUp0?.Invoke();
+		}
+	}
+
+	public class BackPressedHandler : MonoBehaviour
+	{
+		public event Action OnBackPressed;
+
+		private void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.Escape))
+				OnBackPressed?.Invoke();
 		}
 	}
 }

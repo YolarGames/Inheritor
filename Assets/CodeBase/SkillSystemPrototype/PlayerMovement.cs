@@ -14,10 +14,10 @@ namespace SkillSystemPrototype
 		}
 
 		private void OnEnable() =>
-			PlayerEvents.OnMove += Move;
+			PlayerInputEvents.OnMove += Move;
 
 		private void OnDisable() =>
-			PlayerEvents.OnMove -= Move;
+			PlayerInputEvents.OnMove -= Move;
 
 		private void Move(Vector2 moveVector) =>
 			_rigidbody.velocity = moveVector * _playerModel.MovementSpeed.FinalValue;

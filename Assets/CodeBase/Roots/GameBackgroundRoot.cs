@@ -8,14 +8,17 @@ namespace Roots
 	{
 		[SerializeField] private Transform _background;
 
-		public override void Go() =>
+		public override void Go()
+		{
+			base.Go();
 			_background.localScale = CalculateScale();
+		}
 
 		private static Vector3 CalculateScale()
 		{
 			Camera cam = ServiceLocator.Container.GetService<AssetService>().Camera;
-			float orthographicSize = cam.orthographicSize;
-			var scale = new Vector3(orthographicSize * 2 * cam.aspect, orthographicSize * 2, 1);
+			float screenHeight = cam.orthographicSize * 2;
+			var scale = new Vector3(screenHeight * cam.aspect, screenHeight, 1);
 			return scale;
 		}
 	}

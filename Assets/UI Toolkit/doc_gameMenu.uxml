@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="doc_settings" src="project://database/Assets/UI%20Toolkit/doc_settings.uxml?fileID=9197481963319205126&amp;guid=f6e820ef04a31b543a7e5fbb90ca4886&amp;type=3#doc_settings" />
+    <Style src="project://database/Assets/UI%20Toolkit/styles-mainMenu.uss?fileID=7433441132597879392&amp;guid=6e67947c54000eb49801e5868a1d1c6e&amp;type=3#styles-mainMenu" />
+    <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
+    <ui:VisualElement name="gameMenuRoot" class="text-font-medieval bg-semi-transparent flex-grow-1 opacity-0 anim-opacity">
+        <ui:VisualElement name="gameMenu" class="flex-grow-1 align-justify-center bg-transparent absolute-size-100 anim-menu-translate">
+            <ui:Button text="Continue" display-tooltip-when-elided="true" name="btn_continue" class="menu-button" style="width: 60%; height: 10%;" />
+            <ui:Button text="Settings" display-tooltip-when-elided="true" name="btn_settings" class="menu-button" style="width: 60%; height: 10%;" />
+            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="btn_mainMenu" class="menu-button" style="width: 60%; height: 10%;" />
+        </ui:VisualElement>
+        <ui:Instance template="doc_settings" name="settingsMenu" class="absolute-size-100 translate-hided-right anim-menu-translate" />
+    </ui:VisualElement>
+</ui:UXML>

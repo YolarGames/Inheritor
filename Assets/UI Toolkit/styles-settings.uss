@@ -1,0 +1,23 @@
+.size-300p {
+    width: 300px;
+}
+
+.margin-50-50-200-50 {
+    margin: 200px 50px 50px;
+}
+
+.unity-base-slider__dragger {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-top: -25px;
+}
+
+.unity-base-slider__tracker {
+    margin-top: -1.5px;
+    height: 12;
+    top: 50px;
+}
+
+.unity-base-slider__drag-container {
+}
