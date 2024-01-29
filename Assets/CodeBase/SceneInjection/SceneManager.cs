@@ -15,7 +15,7 @@ namespace SceneInjection
 		private Task _injectSceneTask;
 		private readonly Dictionary<Type, ASceneRoot> _newScenes = new();
 		private Dictionary<Type, ASceneRoot> _loadedScenes = new();
-		private LoadingScreenRoot _loadingScreen;
+		private UiLoadingScreenRoot _loadingScreen;
 
 		public SceneManager() =>
 			LoadLoadingScreen();
@@ -42,7 +42,7 @@ namespace SceneInjection
 
 		public void AddSceneAsLoaded(Type type, ASceneRoot sceneRoot)
 		{
-			if (type == typeof(LoadingScreenRoot))
+			if (type == typeof(UiLoadingScreenRoot))
 				return;
 
 			Debug.Log($"Adding scene {type.Name}");
@@ -99,8 +99,8 @@ namespace SceneInjection
 
 		private async Task ResolveScene(ASceneRoot sceneRoot, FieldInfo fieldInfo)
 		{
-			if (!IsSceneInLoaded(fieldInfo.GetType(), out ASceneRoot loadedRoot)
-			    && !IsSceneInNew(fieldInfo.GetType(), out loadedRoot))
+			if (!IsSceneInLoaded(fieldInfo.FieldType, out ASceneRoot loadedRoot)
+			    && !IsSceneInNew(fieldInfo.FieldType, out loadedRoot))
 			{
 				Debug.Log($"{sceneRoot.GetType().Name}: loading {fieldInfo.FieldType.Name}");
 
@@ -172,7 +172,7 @@ namespace SceneInjection
 			if (_loadingScreen != null)
 				return;
 
-			_loadingScreen = await LoadScene<LoadingScreenRoot>() as LoadingScreenRoot;
+			_loadingScreen = await LoadScene<UiLoadingScreenRoot>() as UiLoadingScreenRoot;
 		}
 
 		private static async Task SceneLoading(string sceneName)

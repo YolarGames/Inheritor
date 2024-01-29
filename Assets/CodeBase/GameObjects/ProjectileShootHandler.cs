@@ -1,36 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Characters;
+using GameCore;
 using GameCore.GameServices;
 using UnityEngine;
 
-public sealed class ProjectileShootHandler
+public sealed class ProjectileShootHandler : IDisposable
 {
 	private readonly Transform _shootingObject;
 	private readonly Transform _shootPoint;
 	private readonly FactoryService _factoryService;
-	private bool _isShooting = false;
+	private readonly MonoBehaviour _monoBehaviour;
 	private WaitForSeconds _waitForSeconds;
+	private Coroutine _shootingRoutine;
 
-	public ProjectileShootHandler(Transform shootingObject, Transform shootPoint, FactoryService factoryService)
+	public ProjectileShootHandler(Transform shootingObject, Transform shootPoint, FactoryService factoryService, MonoBehaviour monoBehaviour)
 	{
 		_shootingObject = shootingObject;
 		_shootPoint = shootPoint;
 		_factoryService = factoryService;
+		_monoBehaviour = monoBehaviour;
 		_waitForSeconds = new WaitForSeconds(0.2f);
 	}
 
-	public IEnumerator ShootRoutine()
+	public void SetNewShootSpeed(float value) =>
+		_waitForSeconds = new WaitForSeconds(value);
+
+	private IEnumerator ShootRoutine()
 	{
+		yield return null; // wait one frame for rotation to be applied
+		
 		while (true)
 		{
-			if (!_isShooting)
+			if (!Game.IsPaused)
 			{
-				yield return null;
-				continue;
+				LaunchProjectile();
+				yield return _waitForSeconds;
+
 			}
 
-			LaunchProjectile();
-			yield return _waitForSeconds;
+			yield return null;
 		}
 	}
 
@@ -41,14 +50,22 @@ public sealed class ProjectileShootHandler
 		Arrow arrow = _factoryService.CreateArrow(_shootingObject.position, _shootingObject.rotation);
 		arrow.InitData(shootDirection, 5, 5);
 		arrow.Launch();
+
+		return;
+
+		Vector3 CalculateDirection() =>
+			(_shootPoint.position - _shootingObject.position).normalized;
 	}
 
-	private Vector3 CalculateDirection() =>
-		(_shootPoint.position - _shootingObject.position).normalized;
-
 	public void StartShoot() =>
-		_isShooting = true;
+		_shootingRoutine = _monoBehaviour.StartCoroutine(ShootRoutine());
 
-	public void StopShoot() =>
-		_isShooting = false;
+	public void StopShoot()
+	{
+		if (_shootingRoutine != null)
+			_monoBehaviour.StopCoroutine(_shootingRoutine);
+	}
+
+	public void Dispose() =>
+		StopShoot();
 }

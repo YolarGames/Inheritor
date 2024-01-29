@@ -1,0 +1,93 @@
+.opacity-0 {
+    opacity: 0;
+}
+
+.display-none {
+    display: none;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.bg-transparent {
+    background-color: rgba(1, 1, 1, 0);
+}
+
+.bg-black {
+    background-color: rgb(0, 0, 0);
+}
+
+.bg-semi-transparent {
+    background-color: rgba(1, 1, 1, 0.5);
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-justify-center {
+    justify-content: center;
+}
+
+.text-font-medieval {
+    -unity-font: url('project://database/Assets/UI%20Toolkit/Font/MedievalSharp-Regular.ttf?fileID=12800000&guid=209a8ee863cfcb94292231d0fbb35b9b&type=3#MedievalSharp-Regular');
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/Font/MedievalSharp-Regular%20SDF.asset?fileID=11400000&guid=40b153efdc59b3a4c895848ad97ac7bd&type=2#MedievalSharp-Regular SDF');
+}
+
+.text-size-150 {
+    font-size: 150px;
+}
+
+.text-size-75 {
+    font-size: 75px;
+}
+
+.text-size-50 {
+    font-size: 50px;
+}
+
+.text-color-white {
+    color: rgb(229, 229, 229);
+}
+
+.text-align-center {
+    -unity-text-align: middle-center;
+}
+
+.absolute-size-100 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.translate-hided-right {
+    translate: 100% 0;
+}
+
+.translate-hided-left {
+    translate: -100% 0;
+}
+
+.border-0 {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.anim-menu-translate {
+    transition-property: translate;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+}
+
+.anim-loadingScreen-opacity {
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+}

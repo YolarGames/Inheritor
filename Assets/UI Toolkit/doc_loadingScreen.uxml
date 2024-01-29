@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
+    <ui:VisualElement name="loadingScreen" class="flex-grow-1 text-font-medieval align-justify-center bg-black text-color-white anim-loadingScreen-opacity">
+        <ui:VisualElement class="flex-row align-justify-center">
+            <ui:Label text="Loading" name="label" class="text-size-150" />
+            <ui:Label text="." name="dot1" class="text-size-150" style="width: 50px;" />
+            <ui:Label text="." name="dot2" class="text-size-150" style="width: 50px;" />
+            <ui:Label text="." name="dot3" class="text-size-150" style="width: 50px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

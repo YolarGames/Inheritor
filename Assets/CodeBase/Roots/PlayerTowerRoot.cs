@@ -14,19 +14,33 @@ namespace Roots
 		private FactoryService _factoryService;
 		private RotationHandler _rotationHandler;
 		private ProjectileShootHandler _projectileShootHandler;
+		private Coroutine _rotationRoutine;
 
 		public Transform Tower => _tower;
 
 		public override void Go()
 		{
+			base.Go();
+
 			_rotationHandler = new RotationHandler(_tower.transform, _rotationOffset);
-			_projectileShootHandler = new ProjectileShootHandler(_tower, _shootPosition, ServiceLocator.Container.GetService<FactoryService>());
+			_projectileShootHandler = new ProjectileShootHandler(
+				_tower,
+				_shootPosition,
+				factoryService: ServiceLocator.Container.GetService<FactoryService>(),
+				monoBehaviour: this);
 
-			PlayerEvents.OnMouseHold0 += _rotationHandler.Rotate;
-			PlayerEvents.OnMouseDown0 += _projectileShootHandler.StartShoot;
-			PlayerEvents.OnMouseUp0 += _projectileShootHandler.StopShoot;
+			PlayerInputEvents.OnMouseHold0 += _rotationHandler.Rotate;
+			PlayerInputEvents.OnMouseDown0 += _projectileShootHandler.StartShoot;
+			PlayerInputEvents.OnMouseUp0 += _projectileShootHandler.StopShoot;
+		}
 
-			StartCoroutine(_projectileShootHandler.ShootRoutine());
+		private void OnDisable()
+		{
+			PlayerInputEvents.OnMouseHold0 -= _rotationHandler.Rotate;
+			PlayerInputEvents.OnMouseDown0 -= _projectileShootHandler.StartShoot;
+			PlayerInputEvents.OnMouseUp0 -= _projectileShootHandler.StopShoot;
+
+			_projectileShootHandler.Dispose();
 		}
 	}
 }

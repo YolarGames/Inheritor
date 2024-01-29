@@ -1,5 +1,7 @@
-﻿using GameCore.GameServices;
+﻿using GameCore;
+using GameCore.GameServices;
 using UnityEngine;
+using Utils;
 
 public sealed class RotationHandler
 {
@@ -16,11 +18,12 @@ public sealed class RotationHandler
 
 	public void Rotate(Vector2 target)
 	{
-		Vector2 targetPos = _camera.ScreenToWorldPoint(target);
-		Vector2 objectPos = _transform.position;
-		Vector2 direction = (targetPos - objectPos).normalized;
+		if (Game.IsPaused)
+			return;
 
-		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-		_transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - _rotationOffset));
+		_transform.rotation = YolarUtils.Transform.Rotate(
+			_transform.position,
+			_camera.ScreenToWorldPoint(target),
+			_rotationOffset);
 	}
 }

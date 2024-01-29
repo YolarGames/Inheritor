@@ -1,0 +1,9 @@
+.bg-semi-transparent {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.alight-center {
+    justify-content: center;
+    align-items: center;
+}

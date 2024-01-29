@@ -19,6 +19,7 @@ namespace SceneInjection
 
 		private void Start() { }
 
-		public virtual void Go() { }
+		public virtual void Go() =>
+			Debug.Log(GetType().Name + "___GO");
 	}
 }

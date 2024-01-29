@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b88c54f5bf4c35971d78e7c98d650f, type: 3}
+  m_Name: EnemySpawnPatternConfig
+  m_EditorClassIdentifier: 
+  _spawnUnits:
+  - Enemy: {fileID: 0}
+    DelayAfter: 1
+  - Enemy: {fileID: 0}
+    DelayAfter: 2
+  - Enemy: {fileID: 0}
+    DelayAfter: 1
