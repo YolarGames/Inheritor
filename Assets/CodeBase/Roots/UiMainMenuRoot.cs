@@ -1,5 +1,7 @@
+using Audio;
 using GameCore;
 using SceneInjection;
+using UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utils;
@@ -9,7 +11,8 @@ namespace Roots
 	public sealed class UiMainMenuRoot : ASceneRoot
 	{
 		[SerializeField] private UIDocument _document;
-		
+		[SerializeField] private AudioClip _bgMusic;
+
 		private const string k_mainMenu = "mainMenu";
 		private const string k_hideLeft = "translate-hided-left";
 		private const string k_play = "btn_play";
@@ -21,10 +24,15 @@ namespace Roots
 		private Button _btnSettings;
 		private Button _btnExit;
 		private GameSettingsController _settingsController;
+		private AudioSfxPlayer _sfxPlayer;
 
 		public override void Go()
 		{
 			base.Go();
+			var musicPlayer = new AudioMusicPlayer(_bgMusic);
+			musicPlayer.Play();
+			_sfxPlayer = new AudioSfxPlayer();
+
 			_mainMenu = _document.GetVisualElement(k_mainMenu);
 			_settingsController = new GameSettingsController(_document, ShowMainMenu);
 
@@ -32,9 +40,18 @@ namespace Roots
 			_btnExit = _mainMenu.GetButton(k_exit);
 			_btnSettings = _mainMenu.GetButton(k_settings);
 
-			_btnPlay.RegisterCallback(new EventCallback<ClickEvent>(LoadGame));
-			_btnExit.RegisterCallback(new EventCallback<ClickEvent>(ExitGame));
-			_btnSettings.RegisterCallback(new EventCallback<ClickEvent>(GoToSettings));
+			RegisterCallbacks();
+		}
+
+		private void RegisterCallbacks()
+		{
+			_btnPlay.RegisterClickEvent(LoadGame);
+			_btnExit.RegisterClickEvent(ExitGame);
+			_btnSettings.RegisterClickEvent(GoToSettings);
+
+			_btnPlay.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnExit.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 		}
 
 		private void OnDisable() =>
@@ -48,21 +65,30 @@ namespace Roots
 			_btnPlay.UnregisterCallback(new EventCallback<ClickEvent>(LoadGame));
 			_btnExit.UnregisterCallback(new EventCallback<ClickEvent>(ExitGame));
 			_btnSettings.UnregisterCallback(new EventCallback<ClickEvent>(GoToSettings));
+
+			_btnPlay.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnExit.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 		}
 
 		private async void LoadGame(ClickEvent evt)
 		{
+			_sfxPlayer.PlayClickButton();
 			UnregisterCallbacks();
 			await SceneManagerInstance.StartNewScene<GameRoot>();
 		}
 
 		private void GoToSettings(ClickEvent evt)
 		{
+			_sfxPlayer.PlayClickButton();
 			_mainMenu.AddToClassList(k_hideLeft);
 			_settingsController.Show();
 		}
 
-		private void ExitGame(ClickEvent evt) =>
+		private void ExitGame(ClickEvent evt)
+		{
+			_sfxPlayer.PlayClickButton();
 			Game.Quit();
+		}
 	}
 }

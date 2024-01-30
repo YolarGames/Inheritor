@@ -31,20 +31,19 @@ namespace GameCore.GameServices
 
 		public async Task StartServiceInitialization()
 		{
-			await Register(new ConfigService())
-				.Init();
+			await Register(new ConfigService()).Init();
 			Debug.Log("ConfigService initialized");
 
-			await Register(new InputService())
-				.Init();
+			await Register(new InputService()).Init();
 			Debug.Log("InputService initialized");
 
-			await Register(new AssetService(GetService<ConfigService>().AssetServiceConfig))
-				.Init();
+			await Register(new AssetService(GetService<ConfigService>().AssetServiceConfig)).Init();
 			Debug.Log("AssetService initialized");
+			
+			await Register(new AudioService(GetService<ConfigService>().AudioServiceConfig)).Init();
+			Debug.Log("AudioService initialized");
 
-			await Register(new FactoryService(GetService<AssetService>()))
-				.Init();
+			await Register(new FactoryService(GetService<AssetService>())).Init();
 			Debug.Log("FactoryService initialized");
 
 			_isInitialized = true;

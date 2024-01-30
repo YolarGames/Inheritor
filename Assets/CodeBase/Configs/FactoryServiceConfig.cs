@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Configs
 {
-	[CreateAssetMenu(fileName = "FactoryServiceConfig", menuName = "Configs/FactoryService config")]
+	[CreateAssetMenu(fileName = "FactoryServiceConfig", menuName = "Configs/Services/FactoryService config")]
 	public sealed class FactoryServiceConfig : ScriptableObject
 	{
 		[SerializeField] private Arrow _arrowPrefab;

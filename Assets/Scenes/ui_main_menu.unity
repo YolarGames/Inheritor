@@ -217,3 +217,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _document: {fileID: 505334753}
+  _bgMusic: {fileID: 8300000, guid: 87387e3e66e1134408e4183f0785ceae, type: 3}

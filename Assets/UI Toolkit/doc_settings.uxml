@@ -1,21 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Slider_upd" src="project://database/Assets/UI%20Toolkit/Slider_upd.uxml?fileID=9197481963319205126&amp;guid=97a84cae8c4933c44bfe773507e157bd&amp;type=3#Slider_upd" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-settings.uss?fileID=7433441132597879392&amp;guid=5ed0bca70d8129a4bac25d10eaea9d72&amp;type=3#styles-settings" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-mainMenu.uss?fileID=7433441132597879392&amp;guid=6e67947c54000eb49801e5868a1d1c6e&amp;type=3#styles-mainMenu" />
     <ui:VisualElement class="flex-grow-1 text-size-75 text-font-medieval align-justify-center absolute-position size-100">
-        <ui:VisualElement class="align-justify-center margin-50-50-200-50" style="justify-content: space-around; height: 60%;">
-            <ui:Label text="Sound" class="text-align-center text-size-150 text-color-white" />
-            <ui:VisualElement name="master" class="flex-row" style="background-color: rgba(0, 0, 0, 0);">
-                <ui:Button text="Master" class="bg-transparent size-300p text-color-white border-0" />
-                <ui:Slider class="flex-grow-1" />
+        <ui:VisualElement class="align-justify-center margin-50-50-200-50" style="justify-content: space-around; height: 40%;">
+            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);">
+                <ui:Label tabindex="-1" text="Music" display-tooltip-when-elided="true" class="text-align-center text-color-white" />
+                <ui:Instance template="Slider_upd" name="sli_music" />
             </ui:VisualElement>
-            <ui:VisualElement name="music" class="flex-row" style="background-color: rgba(0, 0, 0, 0);">
-                <ui:Button text="Music" class="bg-transparent size-300p text-color-white border-0" />
-                <ui:Slider class="flex-grow-1" />
-            </ui:VisualElement>
-            <ui:VisualElement name="sound" class="flex-row" style="background-color: rgba(0, 0, 0, 0);">
-                <ui:Button text="Sound" class="bg-transparent size-300p text-color-white border-0" />
-                <ui:Slider class="flex-grow-1" />
+            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);">
+                <ui:Label tabindex="-1" text="Sound" display-tooltip-when-elided="true" class="text-align-center text-color-white" />
+                <ui:Instance template="Slider_upd" name="sli_sfx" />
             </ui:VisualElement>
             <ui:Button text="Back" name="btn_back" class="menu-button" />
         </ui:VisualElement>

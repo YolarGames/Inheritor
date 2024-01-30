@@ -1,4 +1,5 @@
-﻿using GameCore;
+﻿using Audio;
+using GameCore;
 using SceneInjection;
 using SkillSystemPrototype;
 using UI;
@@ -26,30 +27,26 @@ namespace Roots
 		private Button _btnMainMenu;
 		private ShowHideHandler _showHideHandler;
 		private GameSettingsController _settingsController;
+		private AudioSfxPlayer _sfxPlayer;
 
 		public override void Go()
 		{
 			base.Go();
 
+			_sfxPlayer = new AudioSfxPlayer();
+			_settingsController = new GameSettingsController(_document, ShowGameMenu);
+			
 			_gameMenuRoot = _document.GetVisualElement(k_gameMenuRoot);
 			_gameMenu = _document.GetVisualElement(k_gameMenu);
 
 			_showHideHandler = new ShowHideHandler(_gameMenuRoot, this, OnToggle);
-			_settingsController = new GameSettingsController(_document, ShowGameMenu);
 
 			_btnContinue = _gameMenu.GetButton(k_continueButton);
 			_btnSettings = _gameMenu.GetButton(k_settingsButton);
 			_btnMainMenu = _gameMenu.GetButton(k_mainMenuButton);
 
-			_btnContinue.RegisterClickEvent(HideGameMenu);
-			_btnSettings.RegisterClickEvent(ShowSettings);
-			_btnMainMenu.RegisterClickEvent(GoToMainMenu);
-
-			PlayerInputEvents.OnBackPressed += _showHideHandler.Toggle;
+			RegisterCallbacks();
 		}
-
-		private void OnToggle(bool isShown) =>
-			Game.PauseGame(isShown);
 
 		private void OnDisable()
 		{
@@ -57,29 +54,54 @@ namespace Roots
 			UnregisterCallbacks();
 		}
 
+		private void OnToggle(bool isShown) =>
+			Game.PauseGame(isShown);
+
+		private void RegisterCallbacks()
+		{
+			_btnContinue.RegisterClickEvent(HideGameMenu);
+			_btnSettings.RegisterClickEvent(ShowSettings);
+			_btnMainMenu.RegisterClickEvent(GoToMainMenu);
+
+			_btnContinue.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnMainMenu.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			
+			PlayerInputEvents.OnBackPressed += _showHideHandler.Toggle;
+		}
+
 		private void UnregisterCallbacks()
 		{
-			PlayerInputEvents.OnBackPressed -= _showHideHandler.Toggle;
-
 			_btnContinue.UnregisterClickEvent(HideGameMenu);
 			_btnSettings.UnregisterClickEvent(ShowSettings);
 			_btnMainMenu.UnregisterClickEvent(GoToMainMenu);
+			
+			_btnContinue.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_btnMainMenu.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			
+			PlayerInputEvents.OnBackPressed -= _showHideHandler.Toggle;
 		}
 
 		private void ShowGameMenu() =>
 			_gameMenu.RemoveFromClassList(k_hideLeft);
 
-		private void HideGameMenu(ClickEvent evt) =>
+		private void HideGameMenu(ClickEvent evt)
+		{
+			_sfxPlayer.PlayClickButton();
 			_showHideHandler.Toggle();
+		}
 
 		private void ShowSettings(ClickEvent evt)
 		{
+			_sfxPlayer.PlayClickButton();
 			_gameMenu.AddToClassList(k_hideLeft);
 			_settingsController.Show();
 		}
 
 		private async void GoToMainMenu(ClickEvent evt)
 		{
+			_sfxPlayer.PlayClickButton();
 			UnregisterCallbacks();
 			await SceneManagerInstance.StartNewScene<UiMainMenuRoot>();
 			Game.PauseGame(false);

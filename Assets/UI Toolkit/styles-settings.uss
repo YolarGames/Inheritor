@@ -6,18 +6,17 @@
     margin: 200px 50px 50px;
 }
 
-.unity-base-slider__dragger {
-    width: 50px;
-    height: 50px;
+.unity-base-slider__dragger{
+    margin: 0;
+    top: -100%;
     border-radius: 50px;
-    margin-top: -25px;
+    width: 80px;
+    height: 80px;
 }
 
-.unity-base-slider__tracker {
-    margin-top: -1.5px;
-    height: 12;
-    top: 50px;
-}
-
-.unity-base-slider__drag-container {
+.unity-base-slider__tracker{
+    border-radius: 10px;
+    margin: 0;
+    height: 100%;
+    top: 0;
 }
