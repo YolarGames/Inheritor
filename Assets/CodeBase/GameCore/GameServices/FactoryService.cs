@@ -23,4 +23,9 @@ namespace GameCore.GameServices
 			return arrow;
 		}
 	}
+
+	public interface IFactoryService : IService
+	{
+		Arrow CreateArrow(Vector3 position, Quaternion transformRotation);
+	}
 }

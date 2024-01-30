@@ -25,4 +25,11 @@ namespace GameCore.GameServices
 			await Task.CompletedTask;
 		}
 	}
+
+	public interface IAssetService : IService
+	{
+		Arrow ArrowPrefab { get; }
+		Camera Camera { get; }
+		EventSystem EventSystem { get; }
+	}
 }
