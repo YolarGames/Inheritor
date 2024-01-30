@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Configs
 {
-	[CreateAssetMenu(fileName = "AssetServiceConfig", menuName = "Configs/AssetService config", order = 0)]
+	[CreateAssetMenu(fileName = "AssetServiceConfig", menuName = "Configs/Services/AssetService config", order = 0)]
 	public sealed class AssetServiceConfig : ScriptableObject
 	{
 		[SerializeField] private Arrow _arrowPrefab;

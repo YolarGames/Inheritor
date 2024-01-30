@@ -81,4 +81,6 @@ namespace GameCore.GameServices
 				OnBackPressed?.Invoke();
 		}
 	}
+
+	public interface IInputService : IService { }
 }
