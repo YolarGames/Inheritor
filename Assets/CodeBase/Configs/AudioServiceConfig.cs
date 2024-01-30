@@ -8,5 +8,9 @@ namespace Configs
 	{
 		public AudioMixerGroup MusicMixer;
 		public AudioMixerGroup SfxMixer;
+		
+		[Space, Header("Sfx")]
+		public AudioClip ClickButtonSfx;
+		public AudioClip SelectButtonSfx;
 	}
 }

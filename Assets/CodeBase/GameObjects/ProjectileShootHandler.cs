@@ -11,16 +11,20 @@ public sealed class ProjectileShootHandler : IDisposable
 	private readonly Transform _shootPoint;
 	private readonly FactoryService _factoryService;
 	private readonly MonoBehaviour _monoBehaviour;
+	private readonly Action _onShoot;
 	private WaitForSeconds _waitForSeconds;
 	private Coroutine _shootingRoutine;
 
-	public ProjectileShootHandler(Transform shootingObject, Transform shootPoint, FactoryService factoryService, MonoBehaviour monoBehaviour)
+	public ProjectileShootHandler(MonoBehaviour monoBehaviour, Transform shootingObject, Transform shootPoint,
+			FactoryService factoryService, Action onShoot
+		)
 	{
 		_shootingObject = shootingObject;
 		_shootPoint = shootPoint;
 		_factoryService = factoryService;
 		_monoBehaviour = monoBehaviour;
-		_waitForSeconds = new WaitForSeconds(0.2f);
+		_waitForSeconds = new WaitForSeconds(0.5f);
+		_onShoot = onShoot;
 	}
 
 	public void SetNewShootSpeed(float value) =>
@@ -29,14 +33,13 @@ public sealed class ProjectileShootHandler : IDisposable
 	private IEnumerator ShootRoutine()
 	{
 		yield return null; // wait one frame for rotation to be applied
-		
+
 		while (true)
 		{
 			if (!Game.IsPaused)
 			{
 				LaunchProjectile();
 				yield return _waitForSeconds;
-
 			}
 
 			yield return null;
@@ -50,6 +53,8 @@ public sealed class ProjectileShootHandler : IDisposable
 		Arrow arrow = _factoryService.CreateArrow(_shootingObject.position, _shootingObject.rotation);
 		arrow.InitData(shootDirection, 5, 5);
 		arrow.Launch();
+
+		_onShoot?.Invoke();
 
 		return;
 

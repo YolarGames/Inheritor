@@ -332,3 +332,4 @@ MonoBehaviour:
   _tower: {fileID: 133110842}
   _shootPosition: {fileID: 758367370}
   _rotationOffset: 0
+  _bowShotSfx: {fileID: 8300000, guid: a427f9f4cdd355e46a9cf70363119abc, type: 3}

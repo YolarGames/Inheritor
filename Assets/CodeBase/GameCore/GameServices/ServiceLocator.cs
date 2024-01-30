@@ -37,11 +37,11 @@ namespace GameCore.GameServices
 			await Register(new InputService()).Init();
 			Debug.Log("InputService initialized");
 
-			await Register(new AudioService(GetService<ConfigService>().AudioServiceConfig)).Init();
-			Debug.Log("AudioService initialized");
-
 			await Register(new AssetService(GetService<ConfigService>().AssetServiceConfig)).Init();
 			Debug.Log("AssetService initialized");
+			
+			await Register(new AudioService(GetService<ConfigService>().AudioServiceConfig)).Init();
+			Debug.Log("AudioService initialized");
 
 			await Register(new FactoryService(GetService<AssetService>())).Init();
 			Debug.Log("FactoryService initialized");

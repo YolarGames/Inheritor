@@ -25,6 +25,12 @@ namespace Utils
 		public static void UnregisterClickEvent(this VisualElement visualElement, EventCallback<ClickEvent> action) =>
 			visualElement?.UnregisterCallback<ClickEvent>(action);
 
+		public static void RegisterMouseEnterEvent(this VisualElement visualElement, EventCallback<MouseEnterEvent> action) =>
+			visualElement?.RegisterCallback<MouseEnterEvent>(action);
+
+		public static void UnregisterMouseEnterEvent(this VisualElement visualElement, EventCallback<MouseEnterEvent> action) =>
+			visualElement?.UnregisterCallback<MouseEnterEvent>(action);
+
 		#endregion
 	}
 }

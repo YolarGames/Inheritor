@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="Slider_upd" src="project://database/Assets/Slider_upd.uxml?fileID=9197481963319205126&amp;guid=97a84cae8c4933c44bfe773507e157bd&amp;type=3#Slider_upd" />
+    <ui:Template name="Slider_upd" src="project://database/Assets/UI%20Toolkit/Slider_upd.uxml?fileID=9197481963319205126&amp;guid=97a84cae8c4933c44bfe773507e157bd&amp;type=3#Slider_upd" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-settings.uss?fileID=7433441132597879392&amp;guid=5ed0bca70d8129a4bac25d10eaea9d72&amp;type=3#styles-settings" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-mainMenu.uss?fileID=7433441132597879392&amp;guid=6e67947c54000eb49801e5868a1d1c6e&amp;type=3#styles-mainMenu" />

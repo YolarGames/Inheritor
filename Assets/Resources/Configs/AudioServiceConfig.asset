@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicMixer: {fileID: -6579190593888764897, guid: 400e70ffe34c184498c38db6f0809540, type: 2}
   SfxMixer: {fileID: -8059222708015756358, guid: 400e70ffe34c184498c38db6f0809540, type: 2}
+  ClickButtonSfx: {fileID: 8300000, guid: 2886f9fc8fdd5084887e290868a8fb09, type: 3}
+  SelectButtonSfx: {fileID: 8300000, guid: 46da1dcb74142df408cb34503b048328, type: 3}
