@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace GameStateManagement
@@ -9,16 +10,18 @@ namespace GameStateManagement
 		public static GameStateService Instance => _instance ??= new GameStateService();
 		public GameState State { get; private set; }
 
-		// public GameStateManager(IFirebaseService firebaseService)
+		// public GameStateService(IFirebaseService firebaseService)
 		// {
 		// 	firebaseService.Init();
 		// }
 
-		// public async Task Init()
-		// {
-		// 	GameState loadedState = await _firebaseService.GetGameState();
-		// 	State = loadedState ?? new GameState();
-		// }
+		public async Task Init()
+		{
+			GameState loadedState = null; /*await _firebaseService.GetGameState()*/
+
+			State = loadedState ?? new GameState();
+		}
+
 
 		public Transaction<GameState> StartTransaction()
 		{

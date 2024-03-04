@@ -66,6 +66,8 @@ namespace GameStateManagement
 
 		private void RestoreSnapshot()
 		{
+			_snapshot.BeginTransaction();
+
 			foreach (PropertyInfo property in _properties)
 				property.SetValue(State, property.GetValue(_snapshot));
 		}
