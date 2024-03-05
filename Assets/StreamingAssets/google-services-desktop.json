@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "962409577941",
+    "project_id": "fir-test-b6f9c",
+    "storage_bucket": "fir-test-b6f9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962409577941:android:db5b289752a8b46635515c",
+        "android_client_info": {
+          "package_name": "com.YolarGames.Inheritor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdbQUreQzj3pAOL092bxD1ntiJ_ky8g-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
