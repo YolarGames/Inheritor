@@ -22,18 +22,12 @@ namespace InheritorCode.GameCore.Firebase
 			await AuthUser();
 		}
 
-		public async Task<GameState> LoadGameState()
-		{
-			await Task.CompletedTask;
-			return null;
-		}
+		public async Task<GameState> LoadGameState() =>
+			await _firebaseDatabase.LoadGameState();
 
 		public async Task UpdateGameState(GameState gameState)
 		{
-			string stateJson = JsonUtility.ToJson(gameState);
-			Debug.Log(stateJson);
-
-			await _firebaseDatabase.UploadGameState(stateJson);
+			await _firebaseDatabase.UploadGameState(gameState);
 		}
 
 		private async Task AuthUser() =>

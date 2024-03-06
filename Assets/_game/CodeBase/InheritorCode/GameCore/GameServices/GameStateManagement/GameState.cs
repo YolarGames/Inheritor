@@ -9,7 +9,7 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 	{
 		private readonly HashSet<string> _changedProperties = new();
 		public Action<HashSet<string>> OnChanged { get; set; } = _ => { };
-		public bool IsInTransaction { get; private set; } = false;
+		public bool IsInTransaction { get; private set; }
 
 		[SerializeField] private int _coins;
 		[SerializeField] private int _exp;
@@ -56,14 +56,19 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 
 		private bool CanProcessValueChange<T>(T v1, T v2)
 		{
-			if (IsInTransaction && IsValueDifferent())
-				return true;
+			if (!IsInTransaction)
+			{
+				Debug.LogWarning("GameState: Can't change value outside of transaction");
+				return false;
+			}
 
-			Debug.LogWarning("GameState: Can't change value outside of transaction or value is the same.");
-			return false;
+			if (IsValueEquals())
+				return false;
 
-			bool IsValueDifferent() =>
-				!EqualityComparer<T>.Default.Equals(v1, v2);
+			return true;
+
+			bool IsValueEquals() =>
+				EqualityComparer<T>.Default.Equals(v1, v2);
 		}
 	}
 }

@@ -17,9 +17,8 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 		{
 			if (_firebaseService == null)
 			{
-				State = new GameState();
-
 				Debug.LogWarning("GameStateService: Firebase is not initialized. Creating empty game state.");
+				State = new GameState();
 				return;
 			}
 
@@ -30,18 +29,10 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 				Debug.LogWarning("GameStateService: Can't load game state from Firebase. Creating empty one.");
 				State = new GameState();
 			}
-
-			using (Transaction<GameState> trans = StartTransaction())
-			{
-				trans.State.Coins += 100;
-				trans.State.Exp += 10;
-			}
-
-			await _firebaseService.UpdateGameState(State);
 		}
 
-		public Transaction<GameState> StartTransaction() =>
-			new(State);
+		public Transaction<GameState> StartTransaction(params Action<GameState>[] onComplete) =>
+			new(State, onComplete);
 
 		public GameStateObserver<GameState> CreateObserver(Action<GameState> onChanged, params string[] properties) =>
 			new(State, onChanged, properties);
@@ -50,7 +41,7 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 	public interface IGameStateService : IService
 	{
 		GameState State { get; }
-		Transaction<GameState> StartTransaction();
+		Transaction<GameState> StartTransaction(params Action<GameState>[] onComplete);
 		GameStateObserver<GameState> CreateObserver(Action<GameState> onChanged, params string[] properties);
 	}
 }
