@@ -16,15 +16,15 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 
 		public Transaction(TState state, params Action<TState>[] onComplete)
 		{
+			if (state.IsInTransaction)
+				_isNestedTransaction = true;
+			else
+				state.BeginTransaction();
+
 			State = state;
 			_properties = typeof(TState).GetProperties();
 			_onComplete = onComplete;
 			_snapshot = CreateSnapshot(state);
-
-			if (state.IsInTransaction)
-				_isNestedTransaction = true;
-			else
-				State.BeginTransaction();
 		}
 
 		public void AbortTransaction() =>

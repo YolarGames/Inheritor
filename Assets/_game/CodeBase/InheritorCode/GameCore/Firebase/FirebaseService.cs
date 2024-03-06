@@ -11,14 +11,14 @@ namespace InheritorCode.GameCore.Firebase
 	public class FirebaseService : IFirebaseService
 	{
 		private FirebaseApp _app;
-		private FirebaseAuth _auth;
-		private FirebaseDatabase _database;
+		private FirebaseAuthInteraction _firebaseAuth;
+		private FirebaseDatabaseInteractions _firebaseDatabase;
 
 		public async Task Init()
 		{
 			await CheckAndFixDependencies();
-			InitFirebaseAuth();
-			// InitFirebaseDatabase();
+			_firebaseAuth = new FirebaseAuthInteraction(FirebaseAuth.DefaultInstance);
+			_firebaseDatabase = new FirebaseDatabaseInteractions(FirebaseDatabase.DefaultInstance, _firebaseAuth);
 			await AuthUser();
 		}
 
@@ -28,17 +28,16 @@ namespace InheritorCode.GameCore.Firebase
 			return null;
 		}
 
-		private async Task AuthUser()
+		public async Task UpdateGameState(GameState gameState)
 		{
-			Task<AuthResult> task = _auth.SignInWithEmailAndPasswordAsync("test@test.com", "testing");
+			string stateJson = JsonUtility.ToJson(gameState);
+			Debug.Log(stateJson);
 
-			await task;
-
-			if (task.IsFaulted)
-				Debug.Log("FirebaseService: Sign in is faulted");
-			else
-				Debug.Log($"FirebaseService: User {task.Result.User.Email} authenticated successfully!");
+			await _firebaseDatabase.UploadGameState(stateJson);
 		}
+
+		private async Task AuthUser() =>
+			await _firebaseAuth.SignInWithEmailAndPasswordAsync("test@test.com", "testing");
 
 		private async Task CheckAndFixDependencies()
 		{
@@ -49,26 +48,11 @@ namespace InheritorCode.GameCore.Firebase
 			else
 				Debug.LogError($"FirebaseService: Could not resolve all Firebase dependencies: {dependencyStatus}");
 		}
-
-		private void InitFirebaseAuth()
-		{
-			if (FirebaseAuth.DefaultInstance == null)
-				Debug.LogError("Firebase: Can't init FirebaseAuth");
-			else
-				_auth = FirebaseAuth.DefaultInstance;
-		}
-
-		private void InitFirebaseDatabase()
-		{
-			if (FirebaseDatabase.DefaultInstance == null)
-				Debug.LogError("FirebaseService: Can't init FirebaseDatabase");
-			else
-				_database = FirebaseDatabase.DefaultInstance;
-		}
 	}
 
 	public interface IFirebaseService : IService
 	{
 		Task<GameState> LoadGameState();
+		Task UpdateGameState(GameState gameState);
 	}
 }

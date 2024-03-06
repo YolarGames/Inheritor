@@ -30,6 +30,14 @@ namespace InheritorCode.GameCore.GameServices.GameStateManagement
 				Debug.LogWarning("GameStateService: Can't load game state from Firebase. Creating empty one.");
 				State = new GameState();
 			}
+
+			using (Transaction<GameState> trans = StartTransaction())
+			{
+				trans.State.Coins += 100;
+				trans.State.Exp += 10;
+			}
+
+			await _firebaseService.UpdateGameState(State);
 		}
 
 		public Transaction<GameState> StartTransaction() =>
