@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
-  <string name="firebase_database_url" translatable="false">https://fir-test-b6f9c-default-rtdb.europe-west1.firebasedatabase.app</string>
-  <string name="gcm_defaultSenderId" translatable="false">962409577941</string>
-  <string name="google_storage_bucket" translatable="false">fir-test-b6f9c.appspot.com</string>
-  <string name="project_id" translatable="false">fir-test-b6f9c</string>
-  <string name="google_api_key" translatable="false">AIzaSyCdbQUreQzj3pAOL092bxD1ntiJ_ky8g-I</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCdbQUreQzj3pAOL092bxD1ntiJ_ky8g-I</string>
-  <string name="google_app_id" translatable="false">1:962409577941:android:db5b289752a8b46635515c</string>
+  <string name="firebase_database_url" translatable="false">https://fir-test-d0191-default-rtdb.europe-west1.firebasedatabase.app</string>
+  <string name="gcm_defaultSenderId" translatable="false">546382969313</string>
+  <string name="google_storage_bucket" translatable="false">fir-test-d0191.appspot.com</string>
+  <string name="project_id" translatable="false">fir-test-d0191</string>
+  <string name="google_api_key" translatable="false">AIzaSyCAZDUbsDPqJdpevbJqBa0JXMQcVgk67gQ</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCAZDUbsDPqJdpevbJqBa0JXMQcVgk67gQ</string>
+  <string name="google_app_id" translatable="false">1:546382969313:android:5864bc9bec2317f97ffaa0</string>
 </resources>
