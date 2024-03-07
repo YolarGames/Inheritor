@@ -14,6 +14,8 @@ namespace InheritorCode.GameCore.Firebase
 		private FirebaseAuthInteraction _firebaseAuth;
 		private FirebaseDatabaseInteractions _firebaseDatabase;
 
+		public bool IsUserLoggedInWithEmail => _firebaseAuth.CurrentUser is { Email: not null };
+
 		public async Task Init()
 		{
 			await CheckAndFixDependencies();
@@ -48,6 +50,7 @@ namespace InheritorCode.GameCore.Firebase
 
 	public interface IFirebaseService : IService
 	{
+		bool IsUserLoggedInWithEmail { get; }
 		Task CreateUserWithEmailAndPassword(string email, string password);
 		Task SignInWithEmailAndPassword(string email, string password);
 		Task<GameState> LoadGameState();

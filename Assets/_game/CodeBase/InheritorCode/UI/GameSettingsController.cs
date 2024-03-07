@@ -81,6 +81,9 @@ namespace InheritorCode.UI
 			_musicSlider.value = _audioSettings.MusicVolume;
 			_sfxSlider.value = _audioSettings.SfxVolume;
 
+			_authEmailButton.style.unityBackgroundImageTintColor =
+				_firebaseService.IsUserLoggedInWithEmail ? Color.green : Color.white;
+
 			RegisterCallbacks();
 		}
 
