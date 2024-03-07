@@ -13,10 +13,16 @@ namespace InheritorCode.UI
 		private const string k_settings = "settingsMenu";
 		private const string k_musicSlider = "sli_music";
 		private const string k_sfxSlider = "sli_sfx";
+		private const string k_authGoogle = "btn_google";
+		private const string k_authFacebook = "btn_facebook";
+		private const string k_authMail = "btn_mail";
 		private const string k_back = "btn_back";
 		private const string k_unityDragger = "unity-dragger";
 
 		private readonly VisualElement _settings;
+		private readonly Button _authGoogle;
+		private readonly Button _authFacebook;
+		private readonly Button _authMail;
 		private readonly Slider _musicSlider;
 		private readonly Slider _sfxSlider;
 		private readonly Button _back;
@@ -38,9 +44,13 @@ namespace InheritorCode.UI
 			if (_settings == null)
 				Debug.LogError("cant find Settings visual element");
 
+			_authGoogle = _settings.GetButton(k_authGoogle);
+			_authFacebook = _settings.GetButton(k_authFacebook);
+			_authMail = _settings.GetButton(k_authMail);
 			_musicSlider = _settings.GetVisualElement(k_musicSlider).GetSlider();
 			_sfxSlider = _settings.GetVisualElement(k_sfxSlider).GetSlider();
 			_back = _settings.GetButton(k_back);
+
 			_musicDragger = _musicSlider.GetVisualElement(k_unityDragger);
 			_sfxDragger = _sfxSlider.GetVisualElement(k_unityDragger);
 
@@ -56,24 +66,38 @@ namespace InheritorCode.UI
 
 		public void Dispose()
 		{
-			_musicSlider.UnregisterValueChangedCallback(OnMusicChanged);
-			_sfxSlider.UnregisterValueChangedCallback(OnSfxChanged);
-			_back.UnregisterClickEvent(Hide);
-			_back.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			
+			_authGoogle.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_authFacebook.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_authMail.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_musicDragger.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_sfxDragger.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_back.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+
+			_authGoogle.UnregisterClickEvent(_sfxPlayer.PlayClickButton);
+			_authFacebook.UnregisterClickEvent(_sfxPlayer.PlayClickButton);
+			_authMail.UnregisterClickEvent(_sfxPlayer.PlayClickButton);
+			_back.UnregisterClickEvent(Hide);
+
+			_musicSlider.UnregisterValueChangedCallback(OnMusicChanged);
+			_sfxSlider.UnregisterValueChangedCallback(OnSfxChanged);
 		}
 
 		private void RegisterCallbacks()
 		{
-			_musicSlider.RegisterValueChangedCallback(OnMusicChanged);
-			_sfxSlider.RegisterValueChangedCallback(OnSfxChanged);
-			_back.RegisterClickEvent(Hide);
-			_back.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-
+			_authGoogle.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_authFacebook.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_authMail.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_musicDragger.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_sfxDragger.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			_back.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+
+			_authGoogle.RegisterClickEvent(_sfxPlayer.PlayClickButton);
+			_authFacebook.RegisterClickEvent(_sfxPlayer.PlayClickButton);
+			_authMail.RegisterClickEvent(_sfxPlayer.PlayClickButton);
+			_back.RegisterClickEvent(Hide);
+
+			_musicSlider.RegisterValueChangedCallback(OnMusicChanged);
+			_sfxSlider.RegisterValueChangedCallback(OnSfxChanged);
 		}
 
 		private void OnMusicChanged(ChangeEvent<float> evt) =>
