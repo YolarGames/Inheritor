@@ -153,7 +153,7 @@ namespace InheritorCode.UI
 		private void OnRegisterClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
-			// _firebaseService.CreateUserwithEmailAndPassword("", "");
+			_firebaseService.CreateUserWithEmailAndPassword(_emailField.value, _passwordField.value);
 			ResetSubmenus();
 		}
 

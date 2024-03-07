@@ -23,13 +23,26 @@ namespace InheritorCode.GameCore.Firebase
 			void HandleSignInResult(Task<AuthResult> task)
 			{
 				if (task.IsFaulted)
-					Debug.Log("FirebaseService: Sign in is faulted");
+					Debug.Log("FirebaseService: Sign in is faulted. Reason: " + task.Exception);
 				else
 					Debug.Log($"FirebaseService: User {task.Result.User.Email} authenticated successfully!");
 			}
 		}
 
-		public async Task<AuthResult> CreateUserWithEmailAndPasswordAsync(string email, string password) =>
-			await _auth.CreateUserWithEmailAndPasswordAsync(email, password);
+		public async Task CreateUserWithEmailAndPasswordAsync(string email, string password)
+		{
+			await _auth.CreateUserWithEmailAndPasswordAsync(email, password)
+				.ContinueWithOnMainThread(HandleCreateUserResult);
+
+			return;
+
+			void HandleCreateUserResult(Task<AuthResult> task)
+			{
+				if (task.IsFaulted)
+					Debug.Log("FirebaseService: User creation is faulted. Reason: " + task.Exception);
+				else
+					Debug.Log($"FirebaseService: User {task.Result.User.Email} created successfully!");
+			}
+		}
 	}
 }

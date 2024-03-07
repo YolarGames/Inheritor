@@ -21,6 +21,9 @@ namespace InheritorCode.GameCore.Firebase
 			_firebaseDatabase = new FirebaseDatabaseInteractions(FirebaseDatabase.DefaultInstance, _firebaseAuth);
 		}
 
+		public async Task CreateUserWithEmailAndPassword(string email, string password) =>
+			await _firebaseAuth.CreateUserWithEmailAndPasswordAsync(email, password);
+
 		public async Task SignInWithEmailAndPassword(string email, string password) =>
 			await _firebaseAuth.SignInWithEmailAndPasswordAsync(email, password);
 
@@ -45,6 +48,7 @@ namespace InheritorCode.GameCore.Firebase
 
 	public interface IFirebaseService : IService
 	{
+		Task CreateUserWithEmailAndPassword(string email, string password);
 		Task SignInWithEmailAndPassword(string email, string password);
 		Task<GameState> LoadGameState();
 		Task UpdateGameState(GameState gameState);
