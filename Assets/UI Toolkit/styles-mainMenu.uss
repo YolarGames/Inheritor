@@ -2,7 +2,7 @@
     font-size: 150px;
     -unity-text-align: middle-center;
     color: rgb(255, 255, 255);
-    background-image: url('project://database/Assets/Sprites/spr_title.png?fileID=2800000&guid=4af862acca76bb348965363e0d2bb027&type=3#spr_title');
+    background-image: url('project://database/Assets/_game/Sprites/ui/spr_title.png?fileID=2800000&guid=4af862acca76bb348965363e0d2bb027&type=3#spr_title');
     -unity-slice-left: 50;
     -unity-slice-top: 50;
     -unity-slice-right: 50;
@@ -16,7 +16,7 @@
 .menu-button {
     font-size: 80px;
     color: rgb(42, 42, 42);
-    background-image: url('project://database/Assets/Sprites/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
+    background-image: url('project://database/Assets/_game/Sprites/ui/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
     background-color: rgba(255, 255, 255, 0);
     border-left-width: 0;
     border-right-width: 0;
@@ -39,7 +39,7 @@
 .menu-button:hover {
     font-size: 80px;
     color: rgb(42, 42, 42);
-    background-image: url('project://database/Assets/Sprites/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
+    background-image: url('project://database/Assets/_game/Sprites/ui/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
     background-color: rgba(255, 255, 255, 0);
     border-left-width: 0;
     border-right-width: 0;
@@ -64,7 +64,7 @@
 .menu-button:active {
     font-size: 80px;
     color: rgb(42, 42, 42);
-    background-image: url('project://database/Assets/Sprites/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
+    background-image: url('project://database/Assets/_game/Sprites/ui/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
     background-color: rgba(255, 255, 255, 0);
     border-left-width: 0;
     border-right-width: 0;

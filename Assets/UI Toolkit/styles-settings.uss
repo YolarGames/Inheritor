@@ -2,11 +2,11 @@
     width: 300px;
 }
 
-.margin-50-50-200-50 {
-    margin: 200px 50px 50px;
+.margin-50-50-50-50 {
+    margin: 50px;
 }
 
-.unity-base-slider__dragger{
+.unity-base-slider__dragger {
     margin: 0;
     top: -100%;
     border-radius: 50px;
@@ -14,9 +14,15 @@
     height: 80px;
 }
 
-.unity-base-slider__tracker{
+.unity-base-slider__tracker {
     border-radius: 10px;
     margin: 0;
     height: 100%;
     top: 0;
+}
+
+.auth-button {
+    width: 128px;
+    height: 128px;
+    background-color: rgba(188, 188, 188, 0);
 }
