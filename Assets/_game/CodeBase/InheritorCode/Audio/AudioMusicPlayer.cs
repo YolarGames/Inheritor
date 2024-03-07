@@ -5,7 +5,7 @@ namespace InheritorCode.Audio
 {
 	public sealed class AudioMusicPlayer
 	{
-		private readonly IAudioService _audioService = ServiceLocator.Container.GetService<AudioService>();
+		private readonly IAudioService _audioService = ServiceLocator.Container.GetService<IAudioService>();
 		private readonly AudioClip _music;
 
 		public AudioMusicPlayer(AudioClip music) =>

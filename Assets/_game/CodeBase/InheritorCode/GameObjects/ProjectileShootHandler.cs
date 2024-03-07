@@ -11,14 +11,14 @@ namespace InheritorCode.GameObjects
 	{
 		private readonly Transform _shootingObject;
 		private readonly Transform _shootPoint;
-		private readonly FactoryService _factoryService;
+		private readonly IFactoryService _factoryService;
 		private readonly MonoBehaviour _monoBehaviour;
 		private readonly Action _onShoot;
 		private WaitForSeconds _waitForSeconds;
 		private Coroutine _shootingRoutine;
 
 		public ProjectileShootHandler(MonoBehaviour monoBehaviour, Transform shootingObject, Transform shootPoint,
-			FactoryService factoryService, Action onShoot
+			IFactoryService factoryService, Action onShoot
 		)
 		{
 			_shootingObject = shootingObject;

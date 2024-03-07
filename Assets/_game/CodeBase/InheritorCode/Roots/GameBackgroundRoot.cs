@@ -16,7 +16,7 @@ namespace InheritorCode.Roots
 
 		private static Vector3 CalculateScale()
 		{
-			Camera cam = ServiceLocator.Container.GetService<AssetService>().Camera;
+			Camera cam = ServiceLocator.Container.GetService<IAssetService>().Camera;
 			float screenHeight = cam.orthographicSize * 2;
 			var scale = new Vector3(screenHeight * cam.aspect, screenHeight, 1);
 			return scale;

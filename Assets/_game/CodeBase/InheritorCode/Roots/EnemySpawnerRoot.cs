@@ -10,15 +10,15 @@ namespace InheritorCode.Roots
 		[SerializeField] private float _spawnOffsetY = 1;
 		[SerializeField] private EnemySpawnPatternConfig _enemySpawnPatternConfig;
 
-		private FactoryService _factoryService;
+		private IFactoryService _factoryService;
 		private Vector2 _spawnHeightWidth;
 		private Camera _camera;
 
 		public override void Go()
 		{
 			base.Go();
-			_factoryService = ServiceLocator.Container.GetService<FactoryService>();
-			_camera = ServiceLocator.Container.GetService<AssetService>().Camera;
+			_factoryService = ServiceLocator.Container.GetService<IFactoryService>();
+			_camera = ServiceLocator.Container.GetService<IAssetService>().Camera;
 			_spawnHeightWidth = CalculateSpawnPoint();
 			Debug.Log(_spawnHeightWidth);
 			var spawner = new EnemyWaveSpawner(_enemySpawnPatternConfig, _spawnHeightWidth);

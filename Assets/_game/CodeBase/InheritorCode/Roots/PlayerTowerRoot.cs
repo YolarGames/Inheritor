@@ -31,7 +31,7 @@ namespace InheritorCode.Roots
 				this,
 				_tower,
 				_shootPosition,
-				factoryService: ServiceLocator.Container.GetService<FactoryService>(),
+				factoryService: ServiceLocator.Container.GetService<IFactoryService>(),
 				onShoot: _sfxPlayer.PlayOneShot);
 
 			PlayerInputEvents.OnMouseHold0 += _rotationHandler.Rotate;

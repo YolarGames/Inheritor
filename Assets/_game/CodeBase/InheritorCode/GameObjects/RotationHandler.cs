@@ -14,7 +14,7 @@ namespace InheritorCode.GameObjects
 		public RotationHandler(Transform transform, float rotationOffset = 0)
 		{
 			_transform = transform;
-			_camera = ServiceLocator.Container.GetService<AssetService>().Camera;
+			_camera = ServiceLocator.Container.GetService<IAssetService>().Camera;
 			_rotationOffset = rotationOffset;
 		}
 

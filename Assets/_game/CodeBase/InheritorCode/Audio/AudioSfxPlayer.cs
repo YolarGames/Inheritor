@@ -6,7 +6,7 @@ namespace InheritorCode.Audio
 {
 	public sealed class AudioSfxPlayer
 	{
-		private readonly IAudioService _audioService = ServiceLocator.Container.GetService<AudioService>();
+		private readonly IAudioService _audioService = ServiceLocator.Container.GetService<IAudioService>();
 		private readonly AudioClip _clip;
 
 		public AudioSfxPlayer() { }

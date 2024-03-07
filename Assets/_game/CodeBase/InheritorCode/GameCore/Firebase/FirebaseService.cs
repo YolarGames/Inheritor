@@ -19,8 +19,10 @@ namespace InheritorCode.GameCore.Firebase
 			await CheckAndFixDependencies();
 			_firebaseAuth = new FirebaseAuthInteraction(FirebaseAuth.DefaultInstance);
 			_firebaseDatabase = new FirebaseDatabaseInteractions(FirebaseDatabase.DefaultInstance, _firebaseAuth);
-			await AuthUser();
 		}
+
+		public async Task SignInWithEmailAndPassword(string email, string password) =>
+			await _firebaseAuth.SignInWithEmailAndPasswordAsync(email, password);
 
 		public async Task<GameState> LoadGameState() =>
 			await _firebaseDatabase.LoadGameState();
@@ -29,9 +31,6 @@ namespace InheritorCode.GameCore.Firebase
 		{
 			await _firebaseDatabase.UploadGameState(gameState);
 		}
-
-		private async Task AuthUser() =>
-			await _firebaseAuth.SignInWithEmailAndPasswordAsync("test@test.com", "testing");
 
 		private async Task CheckAndFixDependencies()
 		{
@@ -46,6 +45,7 @@ namespace InheritorCode.GameCore.Firebase
 
 	public interface IFirebaseService : IService
 	{
+		Task SignInWithEmailAndPassword(string email, string password);
 		Task<GameState> LoadGameState();
 		Task UpdateGameState(GameState gameState);
 	}

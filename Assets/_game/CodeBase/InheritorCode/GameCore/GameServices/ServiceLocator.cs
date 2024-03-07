@@ -26,13 +26,13 @@ namespace InheritorCode.GameCore.GameServices
 
 		public async Task StartServiceInitialization()
 		{
-			await Register(new ConfigService()).Init();
-			await Register(new InputService()).Init();
-			await Register(new AssetService(GetService<ConfigService>().AssetServiceConfig)).Init();
-			await Register(new AudioService(GetService<ConfigService>().AudioServiceConfig)).Init();
-			await Register(new FactoryService(GetService<AssetService>())).Init();
-			await Register(new FirebaseService()).Init();
-			await Register(new GameStateService(GetService<FirebaseService>())).Init();
+			await Register(new ConfigService() as IConfigService).Init();
+			await Register(new InputService() as IInputService).Init();
+			await Register(new AssetService(GetService<IConfigService>().AssetServiceConfig) as IAssetService).Init();
+			await Register(new AudioService(GetService<IConfigService>().AudioServiceConfig) as IAudioService).Init();
+			await Register(new FactoryService(GetService<IAssetService>()) as IFactoryService).Init();
+			await Register(new FirebaseService() as IFirebaseService).Init();
+			await Register(new GameStateService(GetService<IFirebaseService>()) as IGameStateService).Init();
 
 			_isInitialized = true;
 		}

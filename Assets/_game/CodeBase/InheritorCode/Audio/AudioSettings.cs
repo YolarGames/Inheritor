@@ -16,7 +16,7 @@ namespace InheritorCode.Audio
 
 		public AudioSettings(float musicVolume = 0.4f, float sfxVolume = 0.5f)
 		{
-			_audioService = ServiceLocator.Container.GetService<AudioService>();
+			_audioService = ServiceLocator.Container.GetService<IAudioService>();
 
 			if (HaveSavedSettings())
 				_settingsSnapshot = LoadSavedSettings();
