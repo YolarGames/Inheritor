@@ -62,3 +62,23 @@
 .slider-position-top-10 {
     top: 10px;
 }
+
+.settings-menu {
+    height: 60%;
+    justify-content: space-between;
+}
+
+.settings-subMenu {
+    height: 45%;
+    justify-content: space-around;
+    position: absolute;
+    width: 100%;
+    top: 250px;
+    transition-property: translate;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out-cubic;
+}
+
+.anim-subMenu-hided {
+    translate: 115% 0;
+}
