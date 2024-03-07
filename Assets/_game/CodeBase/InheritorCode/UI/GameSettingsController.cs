@@ -81,9 +81,7 @@ namespace InheritorCode.UI
 			_musicSlider.value = _audioSettings.MusicVolume;
 			_sfxSlider.value = _audioSettings.SfxVolume;
 
-			_authEmailButton.style.unityBackgroundImageTintColor =
-				_firebaseService.IsUserLoggedInWithEmail ? Color.green : Color.white;
-
+			SetEmailAuthColor();
 			RegisterCallbacks();
 		}
 
@@ -146,18 +144,26 @@ namespace InheritorCode.UI
 			ToggleSubmenus();
 		}
 
-		private void OnLoginClick(ClickEvent evt)
+		private async void OnLoginClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
-			_firebaseService.SignInWithEmailAndPassword(_emailField.value, _passwordField.value);
-			ResetSubmenus();
+			await _firebaseService.SignInWithEmailAndPassword(_emailField.value, _passwordField.value);
+
+			if (_firebaseService.IsUserLoggedInWithEmail)
+				ResetSubmenus();
+
+			SetEmailAuthColor();
 		}
 
-		private void OnRegisterClick(ClickEvent evt)
+		private async void OnRegisterClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
-			_firebaseService.CreateUserWithEmailAndPassword(_emailField.value, _passwordField.value);
-			ResetSubmenus();
+			await _firebaseService.CreateUserWithEmailAndPassword(_emailField.value, _passwordField.value);
+
+			if (_firebaseService.IsUserLoggedInWithEmail)
+				ResetSubmenus();
+
+			SetEmailAuthColor();
 		}
 
 		private void OnBackClick(ClickEvent evt)
@@ -174,6 +180,12 @@ namespace InheritorCode.UI
 
 		private void OnSfxChanged(ChangeEvent<float> evt) =>
 			_audioSettings.SetSfxVolume(Mathf.Clamp(evt.newValue, 0f, 1f));
+
+		private void SetEmailAuthColor()
+		{
+			_authEmailButton.style.unityBackgroundImageTintColor =
+				_firebaseService.IsUserLoggedInWithEmail ? Color.green : Color.white;
+		}
 
 		private void ToggleSubmenus()
 		{

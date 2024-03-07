@@ -44,5 +44,19 @@ namespace InheritorCode.GameCore.Firebase
 					Debug.Log($"FirebaseService: User {task.Result.User.Email} created successfully!");
 			}
 		}
+
+		public async Task ReloadUserAsync()
+		{
+			if (_auth.CurrentUser != null)
+				await _auth.CurrentUser.ReloadAsync().ContinueWithOnMainThread(HandleUserReloadResult);
+
+			return;
+
+			void HandleUserReloadResult(Task task)
+			{
+				if (task.IsFaulted)
+					Debug.LogError("FirebaseService: Can't reload user. " + task.Exception);
+			}
+		}
 	}
 }
