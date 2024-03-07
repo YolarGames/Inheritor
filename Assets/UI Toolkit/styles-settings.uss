@@ -31,6 +31,34 @@
     border-left-width: 0;
 }
 
+.auth-button:hover {
+    width: 128px;
+    height: 128px;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    scale: 1.2 1.2;
+    transition-property: scale;
+    transition-timing-function: ease-out-cubic;
+    transition-duration: 0.2s;
+}
+
+.auth-button:active {
+    width: 128px;
+    height: 128px;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    scale: 1.05 1.05;
+    transition-property: scale;
+    transition-duration: 0.05s;
+    transition-timing-function: ease-in-sine;
+}
+
 .slider-position-top-10 {
     top: 10px;
 }
