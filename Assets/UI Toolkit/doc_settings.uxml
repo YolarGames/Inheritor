@@ -4,19 +4,19 @@
     <Style src="project://database/Assets/UI%20Toolkit/styles-settings.uss?fileID=7433441132597879392&amp;guid=5ed0bca70d8129a4bac25d10eaea9d72&amp;type=3#styles-settings" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-mainMenu.uss?fileID=7433441132597879392&amp;guid=6e67947c54000eb49801e5868a1d1c6e&amp;type=3#styles-mainMenu" />
     <ui:VisualElement class="flex-grow-1 text-size-75 text-font-medieval align-justify-center absolute-position size-100">
-        <ui:VisualElement class="align-justify-center margin-50-50-50-50" style="height: 40%; justify-content: space-between;">
+        <ui:VisualElement class="align-justify-center margin-50-50-50-50" style="height: 50%; justify-content: space-between;">
             <ui:VisualElement name="auth" class="flex-row align-justify-spaceAround">
                 <ui:Button name="btn_google" class="auth-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_google-logo.png?fileID=2800000&amp;guid=ed23879912e5fc04cbf67cb3dbc7d06a&amp;type=3#spr_google-logo&apos;);" />
-                <ui:Button name="btn_facebook" class="auth-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_facebook-logo.png?fileID=2800000&amp;guid=904187577ffb82647a90863f353419db&amp;type=3#spr_facebook-logo&apos;);" />
-                <ui:Button name="btn_mail" class="auth-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_mail-logo.png?fileID=2800000&amp;guid=092f93dca47c45b44bc6c25a575b2e26&amp;type=3#spr_mail-logo&apos;);" />
+                <ui:Button name="btn_facebook" class="auth-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_facebook-logo.png?fileID=21300000&amp;guid=aceb169b681b364498b1f0843aa107ab&amp;type=3#spr_facebook-logo&apos;);" />
+                <ui:Button name="btn_mail" class="auth-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_mail-logo.png?fileID=21300000&amp;guid=0a0fc868ee0169d4db8fa6e5fd10d3d3&amp;type=3#spr_mail-logo&apos;);" />
             </ui:VisualElement>
             <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);">
                 <ui:Label tabindex="-1" text="Music" display-tooltip-when-elided="true" class="text-align-center text-color-white" />
-                <ui:Instance template="Slider_upd" name="sli_music" />
+                <ui:Instance template="Slider_upd" name="sli_music" class="slider-position-top-10" />
             </ui:VisualElement>
             <ui:VisualElement style="background-color: rgba(0, 0, 0, 0);">
                 <ui:Label tabindex="-1" text="Sound" display-tooltip-when-elided="true" class="text-align-center text-color-white" />
-                <ui:Instance template="Slider_upd" name="sli_sfx" />
+                <ui:Instance template="Slider_upd" name="sli_sfx" class="slider-position-top-10" />
             </ui:VisualElement>
             <ui:Button text="Back" name="btn_back" class="menu-button" />
         </ui:VisualElement>
