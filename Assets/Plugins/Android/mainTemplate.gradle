@@ -12,7 +12,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-common:20.4.2' // Assets/Firebase/Editor/AppDependencies.xml:13
     implementation 'com.google.firebase:firebase-database:20.3.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:13
     implementation 'com.google.firebase:firebase-database-unity:11.7.0' // Assets/Firebase/Editor/DatabaseDependencies.xml:22
+    implementation 'com.google.games:gpgs-plugin-support:0.11.01' // Assets/GooglePlayGames/com.google.play.games/Editor/GooglePlayGamesPluginDependencies.xml:11
 // Android Resolver Dependencies End
+    // implementation "com.google.android.gms:play-services-games-v2:+"
 **DEPS**}
 
 // Android Resolver Exclusions Start

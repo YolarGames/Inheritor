@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "546382969313-an0jcslsrusotdg9sthle592iuql3qi4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.YolarGames.Inheritor",
+            "certificate_hash": "5020c172909ca82869b832bec9858a493d56b792"
+          }
+        },
+        {
           "client_id": "546382969313-tq4s9j4mftuvok1dg8afqon5c7j439ad.apps.googleusercontent.com",
           "client_type": 3
         }
