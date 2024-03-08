@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Extensions;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using UnityEngine;
 
 namespace InheritorCode.GameCore.Firebase
@@ -12,6 +14,35 @@ namespace InheritorCode.GameCore.Firebase
 
 		public FirebaseAuthInteraction(FirebaseAuth auth) =>
 			_auth = auth;
+
+		public void AuthWithGooglePlay()
+		{
+			PlayGamesPlatform.Instance.Authenticate(HandleAuthStatus);
+
+			return;
+
+			void HandleAuthStatus(SignInStatus status)
+			{
+				if (status == SignInStatus.Success)
+					PlayGamesPlatform.Instance.RequestServerSideAccess(true, HandleServerSideAccess);
+				else
+					Debug.LogError("FirebaseService: Can't authenticate with Google Play. Status: " + status);
+			}
+
+			void HandleServerSideAccess(string code)
+			{
+				Credential credential = PlayGamesAuthProvider.GetCredential(code);
+				_auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(HandleSignInResult);
+			}
+
+			void HandleSignInResult(Task<FirebaseUser> task)
+			{
+				if (task.IsFaulted)
+					Debug.LogError("FirebaseService: Can't sign in with Google Play. " + task.Exception);
+				else
+					Debug.Log($"FirebaseService: User {task.Result.Email} authenticated successfully!");
+			}
+		}
 
 		public async Task SignInWithEmailAndPasswordAsync(string email, string password)
 		{
