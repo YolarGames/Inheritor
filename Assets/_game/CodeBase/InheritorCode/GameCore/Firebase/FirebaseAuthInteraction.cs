@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Facebook.Unity;
 using Firebase.Auth;
 using Firebase.Extensions;
 using GooglePlayGames;
@@ -14,6 +15,45 @@ namespace InheritorCode.GameCore.Firebase
 
 		public FirebaseAuthInteraction(FirebaseAuth auth) =>
 			_auth = auth;
+
+		public async Task AuthWithFacebook()
+		{
+			float yieldTimeout = Time.time + 5f;
+			
+			if (!FB.IsInitialized || Time.time < yieldTimeout)
+				await Task.Yield();
+			
+			FB.Init(HandleInitComplete);
+
+			return;
+
+			void HandleInitComplete()
+			{
+				if (FB.IsInitialized)
+					FB.LogInWithReadPermissions(null, HandleLoginResult);
+				else
+					Debug.LogError("FirebaseService: Can't initialize Facebook SDK.");
+			}
+
+			void HandleLoginResult(ILoginResult result)
+			{
+				if (FB.IsLoggedIn)
+				{
+					Credential credential = FacebookAuthProvider.GetCredential(AccessToken.CurrentAccessToken.TokenString);
+					_auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(HandleSignInResult);
+				}
+				else
+					Debug.LogError("FirebaseService: Can't authenticate with Facebook.");
+			}
+
+			void HandleSignInResult(Task<FirebaseUser> task)
+			{
+				if (task.IsFaulted)
+					Debug.LogError("FirebaseService: Can't sign in with Google Play. " + task.Exception);
+				else
+					Debug.Log($"FirebaseService: User {task.Result.Email} authenticated successfully!");
+			}
+		}
 
 		public async Task AuthWithGooglePlay()
 		{

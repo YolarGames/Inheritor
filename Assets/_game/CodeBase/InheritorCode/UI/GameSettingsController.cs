@@ -1,4 +1,5 @@
 using System;
+using Firebase.Auth;
 using InheritorCode.Audio;
 using InheritorCode.GameCore.Firebase;
 using InheritorCode.GameCore.GameServices;
@@ -89,6 +90,7 @@ namespace InheritorCode.UI
 		{
 			SetEmailAuthColor();
 			SetGoogleAuthColor();
+			SetFacebookAuthColor();
 
 			_settings.RemoveFromClassList(k_hideRight);
 		}
@@ -147,9 +149,11 @@ namespace InheritorCode.UI
 			ResetSubmenus();
 		}
 
-		private void OnAuthFacebookClick(ClickEvent evt)
+		private async void OnAuthFacebookClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
+			await _firebaseService.AuthWithFacebook();
+			SetFacebookAuthColor();
 			ResetSubmenus();
 		}
 
@@ -164,7 +168,7 @@ namespace InheritorCode.UI
 			_sfxPlayer.PlayClickButton();
 			await _firebaseService.SignInWithEmailAndPassword(_emailField.value, _passwordField.value);
 
-			if (_firebaseService.IsUserLoggedInWithEmail)
+			if (_firebaseService.IsUserLoggedWithEmail)
 				ResetSubmenus();
 
 			SetEmailAuthColor();
@@ -175,7 +179,7 @@ namespace InheritorCode.UI
 			_sfxPlayer.PlayClickButton();
 			await _firebaseService.CreateUserWithEmailAndPassword(_emailField.value, _passwordField.value);
 
-			if (_firebaseService.IsUserLoggedInWithEmail)
+			if (_firebaseService.IsUserLoggedWithEmail)
 				ResetSubmenus();
 
 			SetEmailAuthColor();
@@ -199,7 +203,11 @@ namespace InheritorCode.UI
 
 		private void SetEmailAuthColor() =>
 			_authEmailButton.style.unityBackgroundImageTintColor =
-				_firebaseService.IsUserLoggedInWithEmail ? Color.green : Color.white;
+				_firebaseService.IsUserLoggedWithEmail ? Color.green : Color.white;
+
+		private void SetFacebookAuthColor() =>
+			_authFacebookButton.style.unityBackgroundImageTintColor =
+				_firebaseService.IsUserLoggedWithFacebook ? Color.green : Color.white;
 
 		private void ToggleSubmenus()
 		{
