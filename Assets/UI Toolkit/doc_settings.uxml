@@ -24,11 +24,11 @@
                 <ui:TextField picking-mode="Ignore" keyboard-type="EmailAddress" name="field_email" />
                 <ui:TextField picking-mode="Ignore" name="field_password" password="true" />
                 <ui:VisualElement class="flex-row align-justify-spaceAround">
-                    <ui:Button text="Login" name="btn_login" class="submenu-button" />
-                    <ui:Button text="Register" name="btn_register" class="submenu-button" />
+                    <ui:Button text="Login" name="btn_login" focusable="false" class="submenu-button" />
+                    <ui:Button text="Register" name="btn_register" focusable="false" class="submenu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="Back" name="btn_back" class="menu-button" />
+            <ui:Button text="Back" name="btn_back" focusable="false" class="menu-button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

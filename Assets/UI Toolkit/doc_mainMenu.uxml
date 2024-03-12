@@ -6,9 +6,9 @@
         <ui:VisualElement name="mainMenu" class="flex-grow-1 absolute-size-100 anim-menu-translate">
             <ui:Label text="Game Title" class="menu_title" />
             <ui:VisualElement class="flex-grow-1 bg-transparent align-justify-center">
-                <ui:Button text="Play" name="btn_play" class="menu-button" />
-                <ui:Button text="Settings" name="btn_settings" class="menu-button" />
-                <ui:Button text="Exit" name="btn_exit" class="menu-button" />
+                <ui:Button text="Play" name="btn_play" focusable="false" class="menu-button" />
+                <ui:Button text="Settings" name="btn_settings" focusable="false" class="menu-button" />
+                <ui:Button text="Exit" name="btn_exit" focusable="false" class="menu-button" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:Instance template="doc_settings" name="settingsMenu" class="absolute-size-100 translate-hided-right anim-menu-translate" />
