@@ -29,6 +29,9 @@ namespace InheritorCode.Roots
 		public override void Go()
 		{
 			base.Go();
+
+			Application.targetFrameRate = 60;
+
 			var musicPlayer = new AudioMusicPlayer(_bgMusic);
 			musicPlayer.Play();
 			_sfxPlayer = new AudioSfxPlayer();
