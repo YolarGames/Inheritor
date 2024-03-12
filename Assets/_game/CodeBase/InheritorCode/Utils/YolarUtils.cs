@@ -1,9 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace InheritorCode.Utils
 {
 	public static class YolarUtils
 	{
+		#region UIExtentions
+
+		// Used to fix bug with constant hover effect on elements
+		// Unity forum page: https://forum.unity.com/threads/hover-effect-on-uitoolkit-button-is-stuck.1338143/
+		public static void SendEmptyMoveEvent(this VisualElement visualElement)
+		{
+			if (SystemInfo.deviceType != DeviceType.Handheld)
+				return;
+
+			var evt = new PointerMoveEvent();
+			visualElement.SendEvent(evt);
+		}
+
+		#endregion
+
+
 		public static class Sound
 		{
 			/// <summary>
@@ -26,16 +43,16 @@ namespace InheritorCode.Utils
 		public static class Transform
 		{
 			/// <summary>
-			///	Handles 2D space rotation of an object using Quaternion
+			///    Handles 2D space rotation of an object using Quaternion
 			/// </summary>
 			/// <param name="objectPos">
-			///	Position of an object rotation should applied to
+			///    Position of an object rotation should applied to
 			/// </param>
 			/// <param name="targetPos">
-			///	Position of the point object rotating to
+			///    Position of the point object rotating to
 			/// </param>
 			/// <param name="offset">
-			///	Offset of rotation in degrees
+			///    Offset of rotation in degrees
 			/// </param>
 			/// <returns></returns>
 			public static Quaternion Rotate(Vector2 objectPos, Vector2 targetPos, float offset = 0f)

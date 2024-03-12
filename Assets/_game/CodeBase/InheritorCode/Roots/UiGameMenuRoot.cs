@@ -38,7 +38,8 @@ namespace InheritorCode.Roots
 			
 			_gameMenuRoot = _document.GetVisualElement(k_gameMenuRoot);
 			_gameMenu = _document.GetVisualElement(k_gameMenu);
-
+			_gameMenu.SendEmptyMoveEvent();
+			
 			_showHideHandler = new ShowHideHandler(_gameMenuRoot, this, OnToggle);
 
 			_btnContinue = _gameMenu.GetButton(k_continueButton);
@@ -83,8 +84,11 @@ namespace InheritorCode.Roots
 			PlayerInputEvents.OnBackPressed -= _showHideHandler.Toggle;
 		}
 
-		private void ShowGameMenu() =>
+		private void ShowGameMenu()
+		{
+			_gameMenu.SendEmptyMoveEvent();
 			_gameMenu.RemoveFromClassList(k_hideLeft);
+		}
 
 		private void HideGameMenu(ClickEvent evt)
 		{

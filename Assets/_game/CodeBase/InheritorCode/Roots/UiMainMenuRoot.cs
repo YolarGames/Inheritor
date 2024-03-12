@@ -37,6 +37,7 @@ namespace InheritorCode.Roots
 			_sfxPlayer = new AudioSfxPlayer();
 
 			_mainMenu = _document.GetVisualElement(k_mainMenu);
+			_mainMenu.SendEmptyMoveEvent();
 			_settingsController = new GameSettingsController(_document, ShowMainMenu);
 
 			_btnPlay = _mainMenu.GetButton(k_play);
@@ -60,8 +61,12 @@ namespace InheritorCode.Roots
 		private void OnDisable() =>
 			_settingsController?.Dispose();
 
-		private void ShowMainMenu() =>
+		private void ShowMainMenu()
+		{
+			var evt = new PointerMoveEvent();
+			_mainMenu.SendEvent(evt);
 			_mainMenu.RemoveFromClassList(k_hideLeft);
+		}
 
 		private void UnregisterCallbacks()
 		{
