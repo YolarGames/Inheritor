@@ -35,11 +35,11 @@ namespace InheritorCode.Roots
 
 			_sfxPlayer = new AudioSfxPlayer();
 			_settingsController = new GameSettingsController(_document, ShowGameMenu);
-			
+
 			_gameMenuRoot = _document.GetVisualElement(k_gameMenuRoot);
 			_gameMenu = _document.GetVisualElement(k_gameMenu);
 			_gameMenu.SendEmptyMoveEvent();
-			
+
 			_showHideHandler = new ShowHideHandler(_gameMenuRoot, this, OnToggle);
 
 			_btnContinue = _gameMenu.GetButton(k_continueButton);
@@ -67,7 +67,8 @@ namespace InheritorCode.Roots
 			_btnContinue.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_btnMainMenu.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			
+
+			PlayerInputEvents.OnBackPressed += _settingsController.Hide;
 			PlayerInputEvents.OnBackPressed += _showHideHandler.Toggle;
 		}
 
@@ -76,11 +77,12 @@ namespace InheritorCode.Roots
 			_btnContinue.UnregisterClickEvent(HideGameMenu);
 			_btnSettings.UnregisterClickEvent(ShowSettings);
 			_btnMainMenu.UnregisterClickEvent(GoToMainMenu);
-			
+
 			_btnContinue.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_btnMainMenu.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			
+
+			PlayerInputEvents.OnBackPressed -= _settingsController.Hide;
 			PlayerInputEvents.OnBackPressed -= _showHideHandler.Toggle;
 		}
 
@@ -92,6 +94,7 @@ namespace InheritorCode.Roots
 
 		private void HideGameMenu(ClickEvent evt)
 		{
+			_gameMenu.SendEmptyMoveEvent();
 			_sfxPlayer.PlayClickButton();
 			_showHideHandler.Toggle();
 		}

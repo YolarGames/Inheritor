@@ -93,6 +93,14 @@ namespace InheritorCode.UI
 			_settings.RemoveFromClassList(k_hideRight);
 		}
 
+		public void Hide()
+		{
+			_audioSettings.Save();
+			ResetSubmenus();
+			_settings.AddToClassList(k_hideRight);
+			_onSettingsHide?.Invoke();
+		}
+
 		public void Dispose()
 		{
 			_authGoogleButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
@@ -176,10 +184,7 @@ namespace InheritorCode.UI
 		private void OnBackClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
-			_audioSettings.Save();
-			ResetSubmenus();
-			_settings.AddToClassList(k_hideRight);
-			_onSettingsHide?.Invoke();
+			Hide();
 		}
 
 		private void OnMusicChanged(ChangeEvent<float> evt) =>

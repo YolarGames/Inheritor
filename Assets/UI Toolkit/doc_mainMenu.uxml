@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/styles-mainMenu.uss?fileID=7433441132597879392&amp;guid=6e67947c54000eb49801e5868a1d1c6e&amp;type=3#styles-mainMenu" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
     <ui:VisualElement class="flex-grow-1 text-font-medieval" style="background-color: rgb(81, 81, 81);">
-        <ui:VisualElement name="mainMenu" class="flex-grow-1 absolute-size-100 anim-menu-translate">
+        <ui:VisualElement name="mainMenu" class="absolute-size-100 anim-menu-translate">
             <ui:Label text="Game Title" class="menu_title" />
             <ui:VisualElement class="flex-grow-1 bg-transparent align-justify-center">
                 <ui:Button text="Play" name="btn_play" focusable="false" class="menu-button" />
