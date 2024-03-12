@@ -20,6 +20,7 @@ namespace InheritorCode.GameCore.GameServices
 		{
 			Camera = Object.Instantiate(_config.Camera);
 			Object.Instantiate(_config.EventSystem);
+			Object.Instantiate(_config.DebugConsole);
 
 			await Task.CompletedTask;
 		}
