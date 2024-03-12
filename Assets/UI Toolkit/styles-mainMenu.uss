@@ -19,7 +19,7 @@
     font-size: 80px;
     color: rgb(42, 42, 42);
     background-image: url('project://database/Assets/_game/Sprites/ui/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
@@ -42,7 +42,7 @@
     font-size: 80px;
     color: rgb(42, 42, 42);
     background-image: url('project://database/Assets/_game/Sprites/ui/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
@@ -67,7 +67,7 @@
     font-size: 80px;
     color: rgb(42, 42, 42);
     background-image: url('project://database/Assets/_game/Sprites/ui/spr_button.png?fileID=2800000&guid=03306c05bb2af26439cbaf7daf9f8da3&type=3#spr_button');
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
     border-left-width: 0;
     border-right-width: 0;
     border-top-width: 0;
