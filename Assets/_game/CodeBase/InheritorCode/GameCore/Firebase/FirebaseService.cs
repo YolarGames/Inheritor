@@ -41,6 +41,9 @@ namespace InheritorCode.GameCore.Firebase
 		public async Task UpdateGameState(GameState gameState) =>
 			await _firebaseDatabase.UploadGameState(gameState);
 
+		public void AuthWithGooglePlay() =>
+			_firebaseAuth.AuthWithGooglePlay();
+
 		private async Task CheckAndFixDependencies()
 		{
 			DependencyStatus dependencyStatus = await FirebaseApp.CheckAndFixDependenciesAsync();
@@ -59,5 +62,6 @@ namespace InheritorCode.GameCore.Firebase
 		Task SignInWithEmailAndPassword(string email, string password);
 		Task<GameState> LoadGameState();
 		Task UpdateGameState(GameState gameState);
+		void AuthWithGooglePlay();
 	}
 }
