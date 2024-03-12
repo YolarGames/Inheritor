@@ -18,7 +18,6 @@ namespace InheritorCode.GameCore.Firebase
 		public void AuthWithGooglePlay()
 		{
 			PlayGamesPlatform.Instance.Authenticate(HandleAuthStatus);
-
 			return;
 
 			void HandleAuthStatus(SignInStatus status)

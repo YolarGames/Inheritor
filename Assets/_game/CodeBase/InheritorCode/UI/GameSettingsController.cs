@@ -129,7 +129,7 @@ namespace InheritorCode.UI
 		private void OnAuthGoogleClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
-			_firebaseService.AuthWithGooglePlay();
+			Debug.Log(_firebaseService.CurrentUser.ProviderData);
 			ResetSubmenus();
 		}
 
