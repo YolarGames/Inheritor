@@ -15,9 +15,15 @@ namespace InheritorCode.GameCore.Firebase
 		public FirebaseAuthInteraction(FirebaseAuth auth) =>
 			_auth = auth;
 
-		public void AuthWithGooglePlay()
+		public async Task AuthWithGooglePlay()
 		{
+			float yieldTimeout = Time.time + 5f;
+
+			if (!PlayGamesPlatform.Instance.IsAuthenticated() || Time.time < yieldTimeout)
+				await Task.Yield();
+
 			PlayGamesPlatform.Instance.Authenticate(HandleAuthStatus);
+
 			return;
 
 			void HandleAuthStatus(SignInStatus status)

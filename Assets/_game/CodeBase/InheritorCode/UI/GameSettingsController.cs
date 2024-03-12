@@ -76,17 +76,22 @@ namespace InheritorCode.UI
 			_passwordField = _emailSubmenu.Q<TextField>(k_passwordField);
 
 			_firebaseService = ServiceLocator.Container.GetService<IFirebaseService>();
+			_firebaseService.AuthWithGooglePlay();
 			_sfxPlayer = new AudioSfxPlayer();
 			_audioSettings = new AudioSettings();
 			_musicSlider.value = _audioSettings.MusicVolume;
 			_sfxSlider.value = _audioSettings.SfxVolume;
 
-			SetEmailAuthColor();
 			RegisterCallbacks();
 		}
 
-		public void Show() =>
+		public void Show()
+		{
+			SetEmailAuthColor();
+			SetGoogleAuthColor();
+
 			_settings.RemoveFromClassList(k_hideRight);
+		}
 
 		public void Dispose()
 		{
@@ -126,10 +131,11 @@ namespace InheritorCode.UI
 			_sfxSlider.RegisterValueChangedCallback(OnSfxChanged);
 		}
 
-		private void OnAuthGoogleClick(ClickEvent evt)
+		private async void OnAuthGoogleClick(ClickEvent evt)
 		{
 			_sfxPlayer.PlayClickButton();
-			Debug.Log(_firebaseService.CurrentUser.ProviderData);
+			await _firebaseService.AuthWithGooglePlay();
+			SetGoogleAuthColor();
 			ResetSubmenus();
 		}
 
@@ -182,11 +188,13 @@ namespace InheritorCode.UI
 		private void OnSfxChanged(ChangeEvent<float> evt) =>
 			_audioSettings.SetSfxVolume(Mathf.Clamp(evt.newValue, 0f, 1f));
 
-		private void SetEmailAuthColor()
-		{
+		private void SetGoogleAuthColor() =>
+			_authGoogleButton.style.unityBackgroundImageTintColor =
+				_firebaseService.IsUserLoggedWithGooglePlay ? Color.green : Color.white;
+
+		private void SetEmailAuthColor() =>
 			_authEmailButton.style.unityBackgroundImageTintColor =
 				_firebaseService.IsUserLoggedInWithEmail ? Color.green : Color.white;
-		}
 
 		private void ToggleSubmenus()
 		{

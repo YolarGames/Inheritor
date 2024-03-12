@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
@@ -10,12 +11,23 @@ namespace InheritorCode.GameCore.Firebase
 {
 	public class FirebaseService : IFirebaseService
 	{
+		private const string GOOGLE_PLAY_PROVIDER_ID = "playgames.google.com";
 		private FirebaseApp _app;
 		private FirebaseAuthInteraction _firebaseAuth;
 		private FirebaseDatabaseInteractions _firebaseDatabase;
 
-		public FirebaseUser CurrentUser => _firebaseAuth.CurrentUser;
 		public bool IsUserLoggedInWithEmail => _firebaseAuth.CurrentUser is { Email: not null };
+		public bool IsUserLoggedWithGooglePlay
+		{
+			get
+			{
+				if (_firebaseAuth.CurrentUser is null)
+					return false;
+
+				return _firebaseAuth.CurrentUser.ProviderData.Any(
+					provider => provider.ProviderId == GOOGLE_PLAY_PROVIDER_ID);
+			}
+		}
 
 		public async Task Init()
 		{
@@ -42,8 +54,13 @@ namespace InheritorCode.GameCore.Firebase
 		public async Task UpdateGameState(GameState gameState) =>
 			await _firebaseDatabase.UploadGameState(gameState);
 
-		public void AuthWithGooglePlay() =>
-			_firebaseAuth.AuthWithGooglePlay();
+		public async Task AuthWithGooglePlay()
+		{
+			if (IsUserLoggedWithGooglePlay)
+				return;
+
+			await _firebaseAuth.AuthWithGooglePlay();
+		}
 
 		private async Task CheckAndFixDependencies()
 		{
@@ -59,11 +76,11 @@ namespace InheritorCode.GameCore.Firebase
 	public interface IFirebaseService : IService
 	{
 		bool IsUserLoggedInWithEmail { get; }
-		FirebaseUser CurrentUser { get; }
+		bool IsUserLoggedWithGooglePlay { get; }
 		Task CreateUserWithEmailAndPassword(string email, string password);
 		Task SignInWithEmailAndPassword(string email, string password);
 		Task<GameState> LoadGameState();
 		Task UpdateGameState(GameState gameState);
-		void AuthWithGooglePlay();
+		Task AuthWithGooglePlay();
 	}
 }
