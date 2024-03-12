@@ -4,9 +4,9 @@
     <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
     <ui:VisualElement name="gameMenuRoot" class="text-font-medieval bg-semi-transparent flex-grow-1 anim-opacity">
         <ui:VisualElement name="gameMenu" class="align-justify-center bg-transparent absolute-size-100 anim-menu-translate">
-            <ui:Button text="Continue" display-tooltip-when-elided="true" name="btn_continue" focusable="false" class="menu-button" style="width: 60%; height: 10%;" />
-            <ui:Button text="Settings" display-tooltip-when-elided="true" name="btn_settings" focusable="false" class="menu-button" style="width: 60%; height: 10%;" />
-            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="btn_mainMenu" focusable="false" class="menu-button" style="width: 60%; height: 10%;" />
+            <ui:Button text="Continue" display-tooltip-when-elided="true" name="btn_continue" focusable="false" class="menu-button" style="width: 60%;" />
+            <ui:Button text="Settings" display-tooltip-when-elided="true" name="btn_settings" focusable="false" class="menu-button" style="width: 60%;" />
+            <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="btn_mainMenu" focusable="false" class="menu-button" style="width: 60%;" />
         </ui:VisualElement>
         <ui:Instance template="doc_settings" name="settingsMenu" class="absolute-size-100 translate-hided-right anim-menu-translate" />
     </ui:VisualElement>
