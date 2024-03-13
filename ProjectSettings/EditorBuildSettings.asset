@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/_game/Scenes/ui_main_menu.unity
     guid: 95869a69fe20b5a4a949b59f9d868186
   - enabled: 1
-    path: Assets/_game/Scenes/player_tower.unity
-    guid: 80409af5838edf649a9b7bbd96f68bc1
-  - enabled: 1
     path: Assets/_game/Scenes/game_background.unity
     guid: 7e5ba323705b1e74aababdf2c8a0663a
   - enabled: 1
@@ -29,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_game/Scenes/ui_loading_screen.unity
     guid: 6b3b46e80c4e45c498ab3fa1f2c2d2b8
+  - enabled: 1
+    path: Assets/_game/Scenes/farm.unity
+    guid: 74ccdb08af9294448a9c3540ecd8fbc7
+  - enabled: 1
+    path: Assets/_game/Scenes/game_build_menu.unity
+    guid: 903c6b4b88aae4149adc7b55451f642b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: cde6f0e85163ab2429abef8051a16663, type: 2}

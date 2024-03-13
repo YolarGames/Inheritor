@@ -4,9 +4,10 @@ namespace InheritorCode.Roots
 {
 	public sealed class GameRoot : ASceneRoot
 	{
+		[InjectScene] private GameBuildMenuRoot _gameBuildMenu;
+		[InjectScene] private UiGameMenuRoot _gameMenu;
 		[InjectScene] private FarmRoot _farm;
 		[InjectScene] private GameBackgroundRoot _gameBackground;
-		[InjectScene] private UiGameMenuRoot _gameMenu;
 
 		public override void Go()
 		{
