@@ -1,0 +1,59 @@
+.unity-scroll-view__content-container--vertical {
+    flex-direction: column-reverse;
+}
+
+.unity-scroll-view__content-viewport {
+    justify-content: flex-end;
+}
+
+.build-button {
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.build-item {
+    width: 180px;
+    height: 180px;
+    margin: 0;
+    padding: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.build-menu {
+    flex-grow: 1;
+    flex-direction: column-reverse;
+    align-items: center;
+    transition-property: translate;
+    transition-duration: 0.3s;
+    transition-timing-function: linear;
+}
+
+.build-menu-hided {
+    translate: 100% 0;
+}
