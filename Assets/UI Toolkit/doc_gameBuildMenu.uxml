@@ -2,17 +2,17 @@
     <Style src="project://database/Assets/UI%20Toolkit/styles-gameBuildMenu.uss?fileID=7433441132597879392&amp;guid=4258fdb142a24cd48bcd81cb57af026f&amp;type=3#styles-gameBuildMenu" />
     <Style src="project://database/Assets/UI%20Toolkit/styles-global.uss?fileID=7433441132597879392&amp;guid=319d633213d3110469005a442f7cafe6&amp;type=3#styles-global" />
     <ui:VisualElement class="flex-grow-1" style="width: 200px; flex-direction: column-reverse; justify-content: flex-start; align-self: flex-end;">
-        <ui:Button class="build-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_inGameButton.png?fileID=2800000&amp;guid=daf6ba040fe4812469780ceec50d3162&amp;type=3#spr_inGameButton&apos;);">
+        <ui:Button name="btn_build" class="build-button" style="background-image: url(&apos;project://database/Assets/_game/Sprites/ui/spr_inGameButton.png?fileID=2800000&amp;guid=daf6ba040fe4812469780ceec50d3162&amp;type=3#spr_inGameButton&apos;);">
             <ui:VisualElement class="flex-grow-1" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_hammer.png?fileID=2800000&amp;guid=6d261917706f7e3428d780940919e1b9&amp;type=3#spr_hammer&apos;); margin-top: 40px; margin-right: 40px; margin-bottom: 40px; margin-left: 40px;" />
         </ui:Button>
         <ui:VisualElement name="buildMenu" class="build-menu build-menu-hided">
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_hay.png?fileID=2800000&amp;guid=3c13fec0157f550468f857acc2c77325&amp;type=3#spr_hay&apos;);" />
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_cotton.png?fileID=2800000&amp;guid=5eefae74aaf9ffd4680da7d6524323c5&amp;type=3#spr_cotton&apos;);" />
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_ore.png?fileID=2800000&amp;guid=d5f46a8cd6681754cb1d3f1a7be8113e&amp;type=3#spr_ore&apos;);" />
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_bread.png?fileID=2800000&amp;guid=7fe51974981ac6f4fb717f359cbdb5bd&amp;type=3#spr_bread&apos;);" />
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_cloth.png?fileID=2800000&amp;guid=0d2a44974992ddd4a96bfd8ee9cc83fb&amp;type=3#spr_cloth&apos;);" />
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_weapon.png?fileID=2800000&amp;guid=a040ed37f06854e42b806f26e4e8acee&amp;type=3#spr_weapon&apos;);" />
-            <ui:Button class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_solders.png?fileID=2800000&amp;guid=6b9377a6ac2185347a42a90cc6526408&amp;type=3#spr_solders&apos;);" />
+            <ui:Button name="btn_hay" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_hay.png?fileID=2800000&amp;guid=3c13fec0157f550468f857acc2c77325&amp;type=3#spr_hay&apos;);" />
+            <ui:Button name="btn_cotton" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_cotton.png?fileID=2800000&amp;guid=5eefae74aaf9ffd4680da7d6524323c5&amp;type=3#spr_cotton&apos;);" />
+            <ui:Button name="btn_mine" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_ore.png?fileID=2800000&amp;guid=d5f46a8cd6681754cb1d3f1a7be8113e&amp;type=3#spr_ore&apos;);" />
+            <ui:Button name="btn_bread" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_bread.png?fileID=2800000&amp;guid=7fe51974981ac6f4fb717f359cbdb5bd&amp;type=3#spr_bread&apos;);" />
+            <ui:Button name="btn_cloth" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_cloth.png?fileID=2800000&amp;guid=0d2a44974992ddd4a96bfd8ee9cc83fb&amp;type=3#spr_cloth&apos;);" />
+            <ui:Button name="btn_weapon" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_weapon.png?fileID=2800000&amp;guid=a040ed37f06854e42b806f26e4e8acee&amp;type=3#spr_weapon&apos;);" />
+            <ui:Button name="btn_solder" class="build-button build-item" style="background-image: url(&apos;project://database/Assets/_game/Sprites/farm/spr_solders.png?fileID=2800000&amp;guid=6b9377a6ac2185347a42a90cc6526408&amp;type=3#spr_solders&apos;);" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

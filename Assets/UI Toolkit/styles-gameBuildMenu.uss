@@ -51,7 +51,7 @@
     align-items: center;
     transition-property: translate;
     transition-duration: 0.3s;
-    transition-timing-function: linear;
+    transition-timing-function: ease-out-cubic;
 }
 
 .build-menu-hided {
