@@ -68,7 +68,6 @@ namespace InheritorCode.Roots
 			_breadButton.RegisterClickEvent(OnBreadButton);
 			_clothButton.RegisterClickEvent(OnClothButton);
 			_solderButton.RegisterClickEvent(OnSolderButton);
-			_closePanel.RegisterClickEvent(ToggleBuildMenu);
 		}
 
 		private void UnregisterCallbacks()
@@ -81,7 +80,6 @@ namespace InheritorCode.Roots
 			_breadButton.UnregisterClickEvent(OnBreadButton);
 			_clothButton.UnregisterClickEvent(OnClothButton);
 			_solderButton.UnregisterClickEvent(OnSolderButton);
-			_closePanel.UnregisterClickEvent(ToggleBuildMenu);
 		}
 
 		private void OnHayButton(ClickEvent evt)
@@ -121,6 +119,11 @@ namespace InheritorCode.Roots
 
 		private void ToggleBuildMenu(ClickEvent evt)
 		{
+			if (_hayButton.ClassListContains(k_buildItemShown))
+				_closePanel.UnregisterClickEvent(ToggleBuildMenu);
+			else
+				_closePanel.RegisterClickEvent(ToggleBuildMenu);
+
 			_hayButton.ToggleInClassList(k_buildItemShown);
 			_cottonButton.ToggleInClassList(k_buildItemShown);
 			_mineButton.ToggleInClassList(k_buildItemShown);
