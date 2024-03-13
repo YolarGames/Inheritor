@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a505033fabfc4b32b51bc8776cfbb4d1, type: 3}
   m_Name: AssetServiceConfig
   m_EditorClassIdentifier: 
-  _arrowPrefab: {fileID: 1760611798799629214, guid: a0a5569db6b33264ea5e73ff3f8d71d8, type: 3}
+  _farmTilePrefab: {fileID: 6779771598124892959, guid: 26a5978a07c611f4db443fb12ee57a0c, type: 3}
   _camera: {fileID: 6454741141550220498, guid: 2678fb2ebc33d6a4789f64fa7e3637e7, type: 3}
   _eventSystem: {fileID: 1909755901758045340, guid: 7f60b09263ae7d14597f32f60869e3b5, type: 3}
   _debugConsole: {fileID: 132536, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}

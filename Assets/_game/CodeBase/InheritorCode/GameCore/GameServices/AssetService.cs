@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using InheritorCode.Characters;
 using InheritorCode.Configs;
+using InheritorCode.Farming;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,7 +10,7 @@ namespace InheritorCode.GameCore.GameServices
 	{
 		private readonly AssetServiceConfig _config;
 
-		public Arrow ArrowPrefab => _config.ArrowPrefab;
+		public FarmTile FarmTilePrefab => _config.FarmTilePrefab;
 		public Camera Camera { get; private set; }
 
 		public AssetService(AssetServiceConfig config) =>
@@ -28,7 +28,7 @@ namespace InheritorCode.GameCore.GameServices
 
 	public interface IAssetService : IService
 	{
-		Arrow ArrowPrefab { get; }
+		FarmTile FarmTilePrefab { get; }
 		Camera Camera { get; }
 	}
 }

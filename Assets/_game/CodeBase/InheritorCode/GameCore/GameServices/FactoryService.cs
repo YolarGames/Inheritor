@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using InheritorCode.Characters;
+using InheritorCode.Farming;
 using UnityEngine;
 
 namespace InheritorCode.GameCore.GameServices
@@ -17,18 +17,19 @@ namespace InheritorCode.GameCore.GameServices
 			await Task.CompletedTask;
 		}
 
-		public Arrow CreateArrow(Vector3 position, Quaternion rotation)
+		public FarmTile CreateFarmTile(Transform farmSpot)
 		{
-			if (_assetService.ArrowPrefab == null)
-				Debug.LogError("FactoryService: Arrow prefab is not set in AssetService");
+			if (_assetService.FarmTilePrefab == null)
+				Debug.LogError("FactoryService: FarmTilePrefab prefab is not set in AssetService");
 
-			Arrow arrow = Object.Instantiate(_assetService.ArrowPrefab, position, rotation);
-			return arrow;
+			FarmTile farmTile = Object.Instantiate(_assetService.FarmTilePrefab, farmSpot.position, Quaternion.identity);
+			farmTile.transform.parent = farmSpot;
+			return farmTile;
 		}
 	}
 
 	public interface IFactoryService : IService
 	{
-		Arrow CreateArrow(Vector3 position, Quaternion transformRotation);
+		FarmTile CreateFarmTile(Transform farmSpot);
 	}
 }
