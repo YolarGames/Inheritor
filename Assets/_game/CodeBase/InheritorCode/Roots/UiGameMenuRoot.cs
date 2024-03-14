@@ -1,4 +1,5 @@
-﻿using InheritorCode.Audio;
+﻿using System;
+using InheritorCode.Audio;
 using InheritorCode.GameCore;
 using InheritorCode.SceneInjection;
 using InheritorCode.SkillSystemPrototype;
@@ -38,13 +39,14 @@ namespace InheritorCode.Roots
 
 			_gameMenuRoot = _document.GetVisualElement(k_gameMenuRoot);
 			_gameMenu = _document.GetVisualElement(k_gameMenu);
-			_gameMenu.SendEmptyMoveEvent();
 
 			_showHideHandler = new ShowHideHandler(_gameMenuRoot, this, OnToggle);
 
 			_btnContinue = _gameMenu.GetButton(k_continueButton);
 			_btnSettings = _gameMenu.GetButton(k_settingsButton);
 			_btnMainMenu = _gameMenu.GetButton(k_mainMenuButton);
+
+			Adaptation.IfMobile(_gameMenu.SendEmptyMoveEvent);
 
 			RegisterCallbacks();
 		}
@@ -64,9 +66,12 @@ namespace InheritorCode.Roots
 			_btnSettings.RegisterClickEvent(ShowSettings);
 			_btnMainMenu.RegisterClickEvent(GoToMainMenu);
 
-			_btnContinue.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnMainMenu.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			if (Adaptation.IsDesktop)
+			{
+				_btnContinue.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnMainMenu.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			}
 
 			PlayerInputEvents.OnBackPressed += _settingsController.Hide;
 			PlayerInputEvents.OnBackPressed += _showHideHandler.Toggle;
@@ -78,9 +83,12 @@ namespace InheritorCode.Roots
 			_btnSettings.UnregisterClickEvent(ShowSettings);
 			_btnMainMenu.UnregisterClickEvent(GoToMainMenu);
 
-			_btnContinue.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnMainMenu.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			if (Adaptation.IsDesktop)
+			{
+				_btnContinue.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnMainMenu.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			}
 
 			PlayerInputEvents.OnBackPressed -= _settingsController.Hide;
 			PlayerInputEvents.OnBackPressed -= _showHideHandler.Toggle;
@@ -88,13 +96,13 @@ namespace InheritorCode.Roots
 
 		private void ShowGameMenu()
 		{
-			_gameMenu.SendEmptyMoveEvent();
+			Adaptation.IfMobile(_gameMenu.SendEmptyMoveEvent);
 			_gameMenu.RemoveFromClassList(k_hideLeft);
 		}
 
 		private void HideGameMenu(ClickEvent evt)
 		{
-			_gameMenu.SendEmptyMoveEvent();
+			Adaptation.IfMobile(_gameMenu.SendEmptyMoveEvent);
 			_sfxPlayer.PlayClickButton();
 			_showHideHandler.Toggle();
 		}
@@ -112,6 +120,18 @@ namespace InheritorCode.Roots
 			UnregisterCallbacks();
 			await SceneManagerInstance.StartNewScene<UiMainMenuRoot>();
 			Game.PauseGame(false);
+		}
+	}
+
+	public static class Adaptation
+	{
+		public static bool IsMobile => SystemInfo.deviceType == DeviceType.Handheld;
+		public static bool IsDesktop => SystemInfo.deviceType == DeviceType.Desktop;
+
+		public static void IfMobile(Action action)
+		{
+			if (IsMobile)
+				action?.Invoke();
 		}
 	}
 }

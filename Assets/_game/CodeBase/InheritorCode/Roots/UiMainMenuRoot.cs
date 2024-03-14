@@ -37,15 +37,18 @@ namespace InheritorCode.Roots
 			_sfxPlayer = new AudioSfxPlayer();
 
 			_mainMenu = _document.GetVisualElement(k_mainMenu);
-			_mainMenu.SendEmptyMoveEvent();
 			_settingsController = new GameSettingsController(_document, ShowMainMenu);
 
 			_btnPlay = _mainMenu.GetButton(k_play);
 			_btnExit = _mainMenu.GetButton(k_exit);
 			_btnSettings = _mainMenu.GetButton(k_settings);
 
+			Adaptation.IfMobile(_mainMenu.SendEmptyMoveEvent);
 			RegisterCallbacks();
 		}
+
+		private void OnDisable() =>
+			_settingsController?.Dispose();
 
 		private void RegisterCallbacks()
 		{
@@ -53,30 +56,33 @@ namespace InheritorCode.Roots
 			_btnExit.RegisterClickEvent(ExitGame);
 			_btnSettings.RegisterClickEvent(GoToSettings);
 
-			_btnPlay.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnExit.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			if (Adaptation.IsDesktop)
+			{
+				_btnPlay.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnExit.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnSettings.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			}
 		}
 
-		private void OnDisable() =>
-			_settingsController?.Dispose();
+		private void UnregisterCallbacks()	
+		{
+			_btnPlay.UnregisterCallback(new EventCallback<ClickEvent>(LoadGame));
+			_btnExit.UnregisterCallback(new EventCallback<ClickEvent>(ExitGame));
+			_btnSettings.UnregisterCallback(new EventCallback<ClickEvent>(GoToSettings));
+
+			if (Adaptation.IsDesktop)
+			{
+				_btnPlay.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnExit.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			}
+		}
 
 		private void ShowMainMenu()
 		{
 			var evt = new PointerMoveEvent();
 			_mainMenu.SendEvent(evt);
 			_mainMenu.RemoveFromClassList(k_hideLeft);
-		}
-
-		private void UnregisterCallbacks()
-		{
-			_btnPlay.UnregisterCallback(new EventCallback<ClickEvent>(LoadGame));
-			_btnExit.UnregisterCallback(new EventCallback<ClickEvent>(ExitGame));
-			_btnSettings.UnregisterCallback(new EventCallback<ClickEvent>(GoToSettings));
-
-			_btnPlay.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnExit.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
-			_btnSettings.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 		}
 
 		private async void LoadGame(ClickEvent evt)

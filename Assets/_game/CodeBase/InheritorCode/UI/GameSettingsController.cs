@@ -1,8 +1,8 @@
 using System;
-using Firebase.Auth;
 using InheritorCode.Audio;
 using InheritorCode.GameCore.Firebase;
 using InheritorCode.GameCore.GameServices;
+using InheritorCode.Roots;
 using InheritorCode.Utils;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -105,18 +105,22 @@ namespace InheritorCode.UI
 
 		public void Dispose()
 		{
-			_authGoogleButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_authGoogleButton.UnregisterClickEvent(OnAuthGoogleClick);
-			_authFacebookButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_authFacebookButton.UnregisterClickEvent(OnAuthFacebookClick);
-			_authEmailButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_authEmailButton.UnregisterClickEvent(OnAuthMailClick);
-			_loginButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_loginButton.UnregisterClickEvent(OnLoginClick);
-			_registerButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_registerButton.UnregisterClickEvent(OnRegisterClick);
-			_backButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_backButton.UnregisterClickEvent(OnBackClick);
+
+			if (Adaptation.IsDesktop)
+			{
+				_authGoogleButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_authFacebookButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_authEmailButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_loginButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_registerButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_backButton.UnregisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			}
 
 			_musicSlider.UnregisterValueChangedCallback(OnMusicChanged);
 			_sfxSlider.UnregisterValueChangedCallback(OnSfxChanged);
@@ -124,18 +128,22 @@ namespace InheritorCode.UI
 
 		private void RegisterCallbacks()
 		{
-			_authGoogleButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_authGoogleButton.RegisterClickEvent(OnAuthGoogleClick);
-			_authFacebookButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_authFacebookButton.RegisterClickEvent(OnAuthFacebookClick);
-			_authEmailButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_authEmailButton.RegisterClickEvent(OnAuthMailClick);
-			_loginButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_loginButton.RegisterClickEvent(OnLoginClick);
-			_registerButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_registerButton.RegisterClickEvent(OnRegisterClick);
-			_backButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
 			_backButton.RegisterClickEvent(OnBackClick);
+
+			if (Adaptation.IsDesktop)
+			{
+				_authGoogleButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_authFacebookButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_authEmailButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_loginButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_registerButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+				_backButton.RegisterMouseEnterEvent(_sfxPlayer.PlaySelectButton);
+			}
 
 			_musicSlider.RegisterValueChangedCallback(OnMusicChanged);
 			_sfxSlider.RegisterValueChangedCallback(OnSfxChanged);
