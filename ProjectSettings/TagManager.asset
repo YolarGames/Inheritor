@@ -14,8 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - Tower
-  - Enemy
+  - 
+  - 
   - 
   - 
   - 
@@ -47,10 +47,4 @@ TagManager:
     locked: 0
   - name: Farm
     uniqueID: 1438332335
-    locked: 0
-  - name: 
-    uniqueID: 2886281263
-    locked: 0
-  - name: 
-    uniqueID: 1074341785
     locked: 0
